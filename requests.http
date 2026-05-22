@@ -1,0 +1,37 @@
+### Event QR Generator — HTTP requests
+### Works with the VS Code "REST Client" extension or JetBrains HTTP client.
+### Start the server first:  python app.py   (serves on http://localhost:8000)
+
+@host = http://localhost:8000
+
+### 1. Create an event QR (main request)
+# Returns: event_url, qr_svg_url, and qr_data_uri (inline SVG image data URI).
+POST {{host}}/api/events
+Content-Type: application/json
+
+{
+  "name": "Rajesh and SriKruthi's Wedding",
+  "description": "Join us for a celebration of love and togetherness as Rajesh and SriKruthi tie the knot! We can't wait to share this special day with you.",
+  "date": "2026-07-05",
+  "time": "06:52 AM",
+  "location": "https://maps.app.goo.gl/UdxCjvDdrS3TcL518"
+}
+
+### 2. Another example — a minimal event (only required fields: name + date)
+POST {{host}}/api/events
+Content-Type: application/json
+
+{
+  "name": "Team Offsite",
+  "date": "2026-08-02"
+}
+
+### 3. Open the home page (browser form)
+GET {{host}}/
+
+### 4. View the rendered event page directly
+### Paste a token from the "event_url" returned by request #1 after d=
+GET {{host}}/event?d=PASTE_TOKEN_HERE
+
+### 5. Fetch the QR image (SVG) for a token
+GET {{host}}/qr.svg?d=PASTE_TOKEN_HERE

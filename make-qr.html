@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Wedding QR Maker</title>
+<!-- Paste your published invitation link and download a QR code.
+     The QR encoder is fully self-contained (no internet needed).
+     A QR that holds a URL opens reliably on every phone camera. -->
+<script>
+/* Self-contained QR Code encoder (byte mode, versions 1-10, EC L/M/Q/H).
+   Verified against ISO/IEC 18004 test vectors + full encode->decode round-trip.
+   Exposes window.QR.toSvg(text). */
+(function () {
+  var EXP = new Array(256), LOG = new Array(256);
+  (function () { var x = 1; for (var i = 0; i < 255; i++) { EXP[i] = x; x <<= 1; if (x & 0x100) x ^= 0x11D; } EXP[255] = EXP[0]; for (var j = 0; j < 255; j++) LOG[EXP[j]] = j; })();
+  function gmul(a, b) { if (!a || !b) return 0; return EXP[(LOG[a] + LOG[b]) % 255]; }
+  function rsGen(n) { var p = [1]; for (var i = 0; i < n; i++) { var q = new Array(p.length + 1); for (var z = 0; z < q.length; z++) q[z] = 0; for (var k = 0; k < p.length; k++) { q[k] ^= p[k]; q[k + 1] ^= gmul(p[k], EXP[i]); } p = q; } return p; }
+  function rsEnc(data, n) { var g = rsGen(n), b = data.concat(new Array(n).fill(0)); for (var i = 0; i < data.length; i++) { var c = b[i]; if (c) for (var j = 0; j < g.length; j++) b[i + j] ^= gmul(g[j], c); } return b.slice(data.length); }
+  var RS = { 1: [[1, 26, 19], [1, 26, 16], [1, 26, 13], [1, 26, 9]], 2: [[1, 44, 34], [1, 44, 28], [1, 44, 22], [1, 44, 16]], 3: [[1, 70, 55], [1, 70, 44], [2, 35, 17], [2, 35, 13]], 4: [[1, 100, 80], [2, 50, 32], [2, 50, 24], [4, 25, 9]], 5: [[1, 134, 108], [2, 67, 43], [2, 33, 15, 2, 34, 16], [2, 33, 11, 2, 34, 12]], 6: [[2, 86, 68], [4, 43, 27], [4, 43, 19], [4, 43, 15]], 7: [[2, 98, 78], [4, 49, 31], [2, 32, 14, 4, 33, 15], [4, 39, 13, 1, 40, 14]], 8: [[2, 121, 97], [2, 60, 38, 2, 61, 39], [4, 40, 18, 2, 41, 19], [4, 40, 14, 2, 41, 15]], 9: [[2, 146, 116], [3, 58, 36, 2, 59, 37], [4, 36, 16, 4, 37, 17], [4, 36, 12, 4, 37, 13]], 10: [[2, 86, 68, 2, 87, 69], [4, 69, 43, 1, 70, 44], [6, 43, 19, 2, 44, 20], [6, 43, 15, 2, 44, 16]] };
+  var ECIDX = { L: 0, M: 1, Q: 2, H: 3 }, ECFMT = { L: 1, M: 0, Q: 3, H: 2 };
+  var ALIGN = { 1: [], 2: [6, 18], 3: [6, 22], 4: [6, 26], 5: [6, 30], 6: [6, 34], 7: [6, 22, 38], 8: [6, 24, 42], 9: [6, 26, 46], 10: [6, 28, 50] };
+  function blocks(v, ec) { var t = RS[v][ECIDX[ec]], o = []; for (var i = 0; i < t.length; i += 3) for (var k = 0; k < t[i]; k++) o.push({ tot: t[i + 1], dat: t[i + 2] }); return o; }
+  function dataCW(v, ec) { return blocks(v, ec).reduce(function (s, b) { return s + b.dat; }, 0); }
+  var G15 = 0x537, G15M = 0x5412, G18 = 0x1f25;
+  function bchDigit(d) { var n = 0; while (d) { n++; d >>>= 1; } return n; }
+  function bchInfo(d) { var x = d << 10; while (bchDigit(x) - bchDigit(G15) >= 0) x ^= G15 << (bchDigit(x) - bchDigit(G15)); return ((d << 10) | x) ^ G15M; }
+  function bchVer(d) { var x = d << 12; while (bchDigit(x) - bchDigit(G18) >= 0) x ^= G18 << (bchDigit(x) - bchDigit(G18)); return (d << 12) | x; }
+  function utf8(s) { return Array.prototype.slice.call(new TextEncoder().encode(s)); }
+  function maskFn(m, i, j) { switch (m) { case 0: return (i + j) % 2 == 0; case 1: return i % 2 == 0; case 2: return j % 3 == 0; case 3: return (i + j) % 3 == 0; case 4: return (Math.floor(i / 2) + Math.floor(j / 3)) % 2 == 0; case 5: return (i * j) % 2 + (i * j) % 3 == 0; case 6: return ((i * j) % 2 + (i * j) % 3) % 2 == 0; case 7: return ((i * j) % 3 + (i + j) % 2) % 2 == 0; } }
+  function funcLayout(version) {
+    var size = version * 4 + 17, mod = [], reserved = [], r, c;
+    for (r = 0; r < size; r++) { mod.push(new Array(size).fill(null)); reserved.push(new Array(size).fill(false)); }
+    function probe(row, col) { for (var rr = -1; rr <= 7; rr++) for (var cc = -1; cc <= 7; cc++) { var a = row + rr, b = col + cc; if (a < 0 || a >= size || b < 0 || b >= size) continue; mod[a][b] = (0 <= rr && rr <= 6 && (cc == 0 || cc == 6)) || (0 <= cc && cc <= 6 && (rr == 0 || rr == 6)) || (2 <= rr && rr <= 4 && 2 <= cc && cc <= 4); } }
+    probe(0, 0); probe(size - 7, 0); probe(0, size - 7);
+    for (r = 8; r < size - 8; r++) if (mod[r][6] == null) mod[r][6] = (r % 2 == 0);
+    for (c = 8; c < size - 8; c++) if (mod[6][c] == null) mod[6][c] = (c % 2 == 0);
+    var pos = ALIGN[version];
+    for (var pi = 0; pi < pos.length; pi++) for (var pj = 0; pj < pos.length; pj++) { var pr = pos[pi], pc = pos[pj]; if (mod[pr][pc] != null) continue; for (var dr = -2; dr <= 2; dr++) for (var dc = -2; dc <= 2; dc++) mod[pr + dr][pc + dc] = (dr == -2 || dr == 2 || dc == -2 || dc == 2 || (dr == 0 && dc == 0)); }
+    mod[size - 8][8] = true;
+    for (r = 0; r < size; r++) for (c = 0; c < size; c++) if (mod[r][c] != null) reserved[r][c] = true;
+    for (var i = 0; i < 9; i++) { reserved[8][i] = true; reserved[i][8] = true; }
+    for (i = 0; i < 8; i++) { reserved[size - 1 - i][8] = true; reserved[8][size - 1 - i] = true; }
+    if (version >= 7) for (i = 0; i < 6; i++) for (var jj = 0; jj < 3; jj++) { reserved[size - 11 + jj][i] = true; reserved[i][size - 11 + jj] = true; }
+    return { size: size, mod: mod, reserved: reserved };
+  }
+  function placeFormat(mod, size, fmt) { for (var i = 0; i < 15; i++) { var bit = ((fmt >> i) & 1) == 1; if (i < 6) mod[8][i] = bit; else if (i == 6) mod[8][7] = bit; else if (i == 7) mod[8][8] = bit; else if (i == 8) mod[7][8] = bit; else mod[14 - i][8] = bit; if (i < 8) mod[size - 1 - i][8] = bit; else mod[8][size - 15 + i] = bit; } }
+  function placeVersion(mod, size, ver) { for (var i = 0; i < 18; i++) { var bit = ((ver >> i) & 1) == 1, a = Math.floor(i / 3), b = i % 3; mod[size - 11 + b][a] = bit; mod[a][size - 11 + b] = bit; } }
+  function buildStream(text, ec) {
+    var bytes = utf8(text), version = 0, v;
+    for (v = 1; v <= 10; v++) { var cb = v <= 9 ? 8 : 16; if (4 + cb + 8 * bytes.length <= dataCW(v, ec) * 8) { version = v; break; } }
+    if (!version) throw new Error('overflow');
+    var cbits = version <= 9 ? 8 : 16, bits = [];
+    function put(val, len) { for (var i = len - 1; i >= 0; i--) bits.push((val >>> i) & 1); }
+    put(4, 4); put(bytes.length, cbits); bytes.forEach(function (b) { put(b, 8); });
+    var cap = dataCW(version, ec) * 8;
+    for (var t = 0; t < 4 && bits.length < cap; t++) bits.push(0);
+    while (bits.length % 8) bits.push(0);
+    var cws = [], i, j;
+    for (i = 0; i < bits.length; i += 8) { var b = 0; for (j = 0; j < 8; j++) b = (b << 1) | bits[i + j]; cws.push(b); }
+    var pads = [0xEC, 0x11], pi = 0; while (cws.length < dataCW(version, ec)) cws.push(pads[pi++ % 2]);
+    var bl = blocks(version, ec), off = 0, dB = [], eB = [];
+    for (i = 0; i < bl.length; i++) { var dat = cws.slice(off, off + bl[i].dat); off += bl[i].dat; dB.push(dat); eB.push(rsEnc(dat, bl[i].tot - bl[i].dat)); }
+    var maxD = Math.max.apply(null, dB.map(function (d) { return d.length; })), maxE = Math.max.apply(null, eB.map(function (e) { return e.length; })), inter = [];
+    for (i = 0; i < maxD; i++) for (j = 0; j < dB.length; j++) if (i < dB[j].length) inter.push(dB[j][i]);
+    for (i = 0; i < maxE; i++) for (j = 0; j < eB.length; j++) if (i < eB[j].length) inter.push(eB[j][i]);
+    var stream = []; inter.forEach(function (b) { for (var z = 7; z >= 0; z--) stream.push((b >>> z) & 1); });
+    return { version: version, stream: stream };
+  }
+  function makeMatrix(version, ec, stream, mask) {
+    var L = funcLayout(version), size = L.size, reserved = L.reserved, mod = L.mod.map(function (row) { return row.slice(); });
+    var idx = 0, col = size - 1, upward = true;
+    while (col > 0) { if (col == 6) col--; for (var n = 0; n < size; n++) { var row = upward ? size - 1 - n : n; for (var k = 0; k < 2; k++) { var cc = col - k; if (reserved[row][cc]) continue; var dark = idx < stream.length ? stream[idx++] === 1 : false; if (maskFn(mask, row, cc)) dark = !dark; mod[row][cc] = dark; } } col -= 2; upward = !upward; }
+    placeFormat(mod, size, bchInfo((ECFMT[ec] << 3) | mask)); if (version >= 7) placeVersion(mod, size, bchVer(version));
+    return { mod: mod, size: size };
+  }
+  function penalty(mod, size) {
+    var p = 0, r, c, run;
+    for (r = 0; r < size; r++) { run = 1; for (c = 1; c < size; c++) { if (mod[r][c] === mod[r][c - 1]) run++; else { if (run >= 5) p += 3 + (run - 5); run = 1; } } if (run >= 5) p += 3 + (run - 5); }
+    for (c = 0; c < size; c++) { run = 1; for (r = 1; r < size; r++) { if (mod[r][c] === mod[r - 1][c]) run++; else { if (run >= 5) p += 3 + (run - 5); run = 1; } } if (run >= 5) p += 3 + (run - 5); }
+    for (r = 0; r < size - 1; r++) for (c = 0; c < size - 1; c++) { var v = mod[r][c]; if (v === mod[r][c + 1] && v === mod[r + 1][c] && v === mod[r + 1][c + 1]) p += 3; }
+    var pat = [true, false, true, true, true, false, true];
+    function m(r, c, dr, dc) { for (var k = 0; k < 7; k++) { var rr = r + dr * k, cc = c + dc * k; if (rr < 0 || rr >= size || cc < 0 || cc >= size || mod[rr][cc] !== pat[k]) return false; } return true; }
+    for (r = 0; r < size; r++) for (c = 0; c < size; c++) { if (m(r, c, 0, 1)) p += 40; if (m(r, c, 1, 0)) p += 40; }
+    var dark = 0; for (r = 0; r < size; r++) for (c = 0; c < size; c++) if (mod[r][c]) dark++;
+    p += Math.floor(Math.abs(dark / (size * size) * 100 - 50) / 5) * 10; return p;
+  }
+  function generate(text, ec) {
+    var s = buildStream(text, ec), best = null, bp = Infinity, bm = 0;
+    for (var mk = 0; mk < 8; mk++) { var mm = makeMatrix(s.version, ec, s.stream, mk); var pen = penalty(mm.mod, mm.size); if (pen < bp) { bp = pen; best = mm; bm = mk; } }
+    return { mod: best.mod, size: best.size, version: s.version, mask: bm };
+  }
+  function renderSvg(res, cellSize, margin) {
+    var n = res.size, dim = (n + margin * 2) * cellSize, path = '';
+    for (var r = 0; r < n; r++) for (var c = 0; c < n; c++) if (res.mod[r][c]) { var x = (c + margin) * cellSize, y = (r + margin) * cellSize; path += 'M' + x + ' ' + y + 'h' + cellSize + 'v' + cellSize + 'h-' + cellSize + 'z'; }
+    return '<svg xmlns="http://www.w3.org/2000/svg" width="' + dim + '" height="' + dim + '" viewBox="0 0 ' + dim + ' ' + dim + '" shape-rendering="crispEdges"><rect width="' + dim + '" height="' + dim + '" fill="#ffffff"/><path d="' + path + '" fill="#000000"/></svg>';
+  }
+  window.QR = {
+    toSvg: function (text, cellSize, margin) {
+      cellSize = cellSize || 8; margin = margin == null ? 4 : margin;
+      var levels = ['M', 'L'], lastErr = null;
+      for (var i = 0; i < levels.length; i++) {
+        try { return renderSvg(generate(text, levels[i]), cellSize, margin); }
+        catch (e) { lastErr = e; }
+      }
+      throw lastErr || new Error('QR generation failed');
+    }
+  };
+})();
+</script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { min-height: 100vh; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    background: linear-gradient(135deg, #15131a, #0c0b0d); color: #f4efe7;
+    display: flex; align-items: flex-start; justify-content: center; padding: 48px 20px; }
+  .card { width: 100%; max-width: 520px; background: rgba(255,255,255,0.04); border: 1px solid rgba(201,169,106,0.25);
+    border-radius: 18px; padding: 32px; }
+  h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .sub { color: rgba(244,239,231,0.6); font-size: 14px; margin-bottom: 24px; line-height: 1.5; }
+  label { display: block; font-size: 13px; font-weight: 600; color: #c9a96a; margin-bottom: 8px; letter-spacing: 0.04em; }
+  input { width: 100%; padding: 14px; border: 1.5px solid rgba(201,169,106,0.3); border-radius: 10px;
+    font-size: 15px; background: rgba(0,0,0,0.3); color: #f4efe7; }
+  input:focus { outline: none; border-color: #c9a96a; }
+  button { width: 100%; margin-top: 18px; padding: 15px; border: none; border-radius: 12px; cursor: pointer;
+    background: #c9a96a; color: #1a1410; font-size: 15px; font-weight: 700; letter-spacing: 0.04em; transition: transform .12s; }
+  button:active { transform: scale(0.98); }
+  .result { text-align: center; margin-top: 28px; }
+  .qrbox { display: inline-block; background: #fff; padding: 16px; border-radius: 14px; }
+  .qrbox svg { display: block; width: 260px; height: 260px; }
+  .links { margin-top: 18px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+  .links a { font-size: 13px; font-weight: 700; color: #c9a96a; text-decoration: none; cursor: pointer;
+    border: 1px solid rgba(201,169,106,0.4); padding: 9px 16px; border-radius: 9px; }
+  .err { color: #f87171; font-weight: 600; margin-top: 16px; }
+  .hint { margin-top: 14px; font-size: 12px; color: rgba(244,239,231,0.45); line-height: 1.6; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <h1>Wedding QR Maker</h1>
+    <p class="sub">Paste the link to your published invitation page and download a QR code for your cards, signage, or save-the-dates.</p>
+    <label>Invitation link (URL)</label>
+    <input id="url" type="url" placeholder="https://yourname.github.io/wedding/" />
+    <button id="go">Generate QR Code</button>
+    <div id="result"></div>
+    <p class="hint">Tip: a QR that holds a web link opens reliably on every phone camera. Test it with your own phone before printing.</p>
+  </div>
+<script>
+function download(href, name) { const a = document.createElement('a'); a.href = href; a.download = name; document.body.appendChild(a); a.click(); a.remove(); }
+function svgToPng(svg, size) {
+  return new Promise((res, rej) => {
+    const blob = new Blob([svg], { type: 'image/svg+xml;charset=utf-8' });
+    const url = URL.createObjectURL(blob); const img = new Image();
+    img.onload = () => { const c = document.createElement('canvas'); c.width = size; c.height = size;
+      const ctx = c.getContext('2d'); ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, size, size); ctx.drawImage(img, 0, 0, size, size);
+      URL.revokeObjectURL(url); res(c.toDataURL('image/png')); };
+    img.onerror = rej; img.src = url;
+  });
+}
+document.getElementById('go').addEventListener('click', () => {
+  const result = document.getElementById('result');
+  const url = document.getElementById('url').value.trim();
+  if (!url) { result.innerHTML = '<p class="err">Please paste your invitation link first.</p>'; return; }
+  let svg;
+  try { svg = window.QR.toSvg(url, 8, 4); }
+  catch (e) { result.innerHTML = '<p class="err">That link is too long for a QR. Use a shorter URL.</p>'; return; }
+  result.className = '';
+  result.innerHTML = '<div class="result"><div class="qrbox">' + svg + '</div>'
+    + '<div class="links"><a id="dlSvg">Download SVG</a><a id="dlPng">Download PNG</a></div></div>';
+  document.getElementById('dlSvg').addEventListener('click', () => {
+    const b = new Blob([svg], { type: 'image/svg+xml;charset=utf-8' }); const u = URL.createObjectURL(b);
+    download(u, 'wedding-qr.svg'); setTimeout(() => URL.revokeObjectURL(u), 1000);
+  });
+  document.getElementById('dlPng').addEventListener('click', async () => {
+    try { download(await svgToPng(svg, 800), 'wedding-qr.png'); }
+    catch (e) { alert('PNG export failed; the SVG download works as an alternative.'); }
+  });
+});
+</script>
+</body>
+</html>
