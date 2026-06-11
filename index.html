@@ -24,7 +24,7 @@ const CONFIG = {
       venue: "Simba Resorts & Conventions", area: "Pendurthi, Visakhapatnam",
       maps: "https://maps.app.goo.gl/UdxCjvDdrS3TcL518", durationHours: 4 },
     { label: "The Reception", te: "రిసెప్షన్",
-      date: "2026-08-11", time: "19:00",
+      date: "2026-07-11", time: "19:00",
       note: "An evening of music, dinner & celebration.",
       venue: "Shubha Grand", area: "Hyderabad",
       maps: "https://maps.app.goo.gl/9fQ4mWJiTDAevimb9", durationHours: 4 }
@@ -117,6 +117,9 @@ const CONFIG = {
     transition:transform .3s cubic-bezier(.34,1.56,.64,1),box-shadow .3s,background .6s;}
   #fabBtn:hover{transform:translateY(-3px) scale(1.05);}
   #fab.open #fabBtn{transform:rotate(45deg);}
+  .fab-cal{display:flex;flex-direction:column;align-items:center;line-height:1;gap:1px;}
+  .fab-cal-m{font-family:"Space Grotesk",sans-serif;font-size:9px;letter-spacing:.12em;text-transform:uppercase;opacity:.85;}
+  .fab-cal-d{font-family:"Marcellus",serif;font-size:20px;letter-spacing:-.01em;}
   body.dark2 #fabBtn{background:linear-gradient(150deg,var(--zari-bright),var(--zari-d));color:#43091A;}
   #fabSheet{position:absolute;right:0;bottom:70px;width:min(78vw,270px);
     border-radius:18px;padding:14px 16px;background:rgba(255,250,236,.97);
@@ -317,7 +320,7 @@ const CONFIG = {
       <div class="fbtns" id="fabB2"></div>
     </div>
   </div>
-  <button id="fabBtn" aria-label="Open venues and calendar">📅</button>
+  <button id="fabBtn" aria-label="Open venues and calendar"><span class="fab-cal"><span class="fab-cal-m">JUL</span><span class="fab-cal-d">5</span></span></button>
 </div>
 
 <div id="chrome">
