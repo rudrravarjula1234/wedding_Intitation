@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Rajesh &amp; Sri Kruthi — Wedding Invitation</title>
+<meta name="description" content="With the blessings of our families, we invite you to our wedding." />
+
+<!-- ================================================================ -->
+<!--  EDIT YOUR DETAILS HERE — this is the only part you change.       -->
+<!-- ================================================================ -->
+<script>
+const CONFIG = {
+  groom: "Rajesh",
+  groomFull: "Rajesh Rudravarjula",
+  groomParents: "S/o. Sri ____________ &  Smt ____________",
+  bride: "Sri Kruthi",
+  brideFull: "Sri Kruthi Pokunuri",
+  brideParents: "D/o. Sri ____________ &  Smt ____________",
+  hashtag: "RajeshWedsSri",
+  city: "Visakhapatnam",
+  countdownTo: "2026-07-05T06:29:00",   // points to the muhurtam
+  events: [
+    { label: "Vivaham · Wedding", date: "2026-07-05", time: "06:29",
+      venue: "Simba Resorts & Conventions", area: "Pendurthi, Visakhapatnam",
+      maps: "https://maps.app.goo.gl/UdxCjvDdrS3TcL518", durationHours: 4 },
+    { label: "Reception", date: "2026-08-11", time: "19:00",
+      venue: "Shubha Grand", area: "Hyderabad",
+      maps: "https://maps.app.goo.gl/9fQ4mWJiTDAevimb9", durationHours: 4 }
+  ]
+};
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Great+Vibes&display=swap" rel="stylesheet" />
+
+<style>
+  :root{
+    --cream:#FBF3DC; --cream2:#F4E6C4; --maroon:#7B2D34; --maroon-deep:#5E1F29;
+    --gold:#C2902F; --gold-soft:#D8B86A; --green:#3F5C3E; --ink:#4A3520;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:"Cormorant Garamond",Georgia,serif; color:var(--ink);
+    background:
+      radial-gradient(120% 80% at 50% 0%, #FFFDF5 0, transparent 60%),
+      linear-gradient(180deg,#FCF6E3 0%, #FBF3DC 40%, #F6EAC8 100%);
+    background-attachment:fixed; -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  }
+  .script{font-family:"Great Vibes",cursive;}
+  .caps{font-family:"Cinzel",serif;letter-spacing:0.12em;}
+
+  /* decorative outer frame */
+  .frame{position:fixed;inset:12px;border:2px solid rgba(194,144,47,0.55);border-radius:10px;pointer-events:none;z-index:30;}
+  .frame:before{content:"";position:absolute;inset:6px;border:1px solid rgba(123,45,52,0.35);border-radius:6px;}
+
+  /* falling petals */
+  #petals{position:fixed;inset:0;pointer-events:none;z-index:5;overflow:hidden;}
+  .petal{position:absolute;top:-40px;font-size:22px;opacity:0;animation:fall linear infinite;}
+  @keyframes fall{
+    0%{transform:translateY(-40px) rotate(0);opacity:0;}
+    10%{opacity:.85;}
+    100%{transform:translateY(105vh) translateX(40px) rotate(360deg);opacity:0;}
+  }
+
+  section{position:relative;z-index:10;max-width:680px;margin:0 auto;padding:64px 26px;text-align:center;}
+  .panel{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+
+  /* toranam (hanging garland) */
+  .toranam{width:100%;max-width:520px;margin:0 auto 8px;display:block;}
+
+  /* Ganesha / Om */
+  .om{font-size:64px;color:var(--maroon);line-height:1;text-shadow:0 0 22px rgba(194,144,47,0.45);
+    animation:glow 3.6s ease-in-out infinite;}
+  @keyframes glow{0%,100%{text-shadow:0 0 14px rgba(194,144,47,0.35);}50%{text-shadow:0 0 30px rgba(194,144,47,0.7);}}
+  .invocation{font-size:clamp(16px,4.6vw,20px);color:var(--maroon);letter-spacing:0.06em;margin-top:10px;}
+
+  .eyebrow{font-size:12px;letter-spacing:0.36em;text-transform:uppercase;color:var(--gold);margin:18px 0;}
+  .title.caps{font-size:clamp(18px,5vw,26px);color:var(--maroon);}
+  .names-script{font-size:clamp(64px,17vw,118px);color:var(--maroon);line-height:0.9;margin:6px 0;}
+  .amp{display:block;font-size:clamp(26px,7vw,46px);color:var(--gold);margin:2px 0;}
+  .lead{font-size:clamp(16px,4.4vw,20px);line-height:1.7;color:var(--ink);max-width:520px;margin:0 auto;}
+  .parents{font-size:clamp(15px,4vw,18px);color:#6a5436;margin-top:4px;}
+  .with{font-family:"Great Vibes",cursive;font-size:clamp(30px,8vw,46px);color:var(--gold);margin:6px 0;}
+  .bigdate{font-family:"Cinzel",serif;letter-spacing:0.18em;font-size:clamp(18px,5vw,26px);color:var(--maroon);margin-top:18px;}
+  .city.caps{font-size:clamp(16px,4.4vw,22px);color:var(--ink);margin-top:8px;}
+
+  .divider{display:flex;align-items:center;justify-content:center;gap:12px;margin:22px auto;color:var(--gold);}
+  .divider:before,.divider:after{content:"";height:1px;width:64px;background:linear-gradient(90deg,transparent,var(--gold));}
+  .divider:after{background:linear-gradient(90deg,var(--gold),transparent);}
+
+  /* countdown */
+  .countdown{display:flex;gap:clamp(12px,5vw,30px);justify-content:center;margin-top:26px;}
+  .cd b{display:block;font-family:"Cinzel",serif;font-size:clamp(26px,7vw,42px);color:var(--maroon);line-height:1;}
+  .cd span{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);}
+
+  /* event cards */
+  .events{display:grid;gap:26px;margin-top:10px;}
+  .card{background:rgba(255,252,242,0.7);border:1px solid rgba(194,144,47,0.45);border-radius:16px;
+    padding:30px 26px;box-shadow:0 14px 36px -20px rgba(94,31,41,0.5);}
+  .card .klabel{font-family:"Cinzel",serif;letter-spacing:0.16em;text-transform:uppercase;font-size:13px;color:var(--gold);}
+  .card .when{font-size:clamp(18px,5vw,24px);color:var(--maroon);font-weight:600;margin:10px 0 2px;}
+  .card .time{font-size:16px;color:#6a5436;}
+  .card .venue{margin-top:12px;font-size:17px;color:var(--ink);font-weight:600;}
+  .card .area{font-size:15px;color:#6a5436;}
+  .actions{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:18px;}
+  .btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-family:"Cinzel",serif;
+    font-size:12px;letter-spacing:0.12em;text-transform:uppercase;padding:12px 20px;border-radius:4px;transition:transform .15s,background .2s;}
+  .btn-gold{background:var(--maroon);color:#fff5e6;}
+  .btn-gold:hover{transform:translateY(-2px);background:var(--maroon-deep);}
+  .btn-ghost{border:1px solid var(--gold);color:var(--maroon);}
+  .btn-ghost:hover{transform:translateY(-2px);background:rgba(194,144,47,0.12);}
+
+  .namaste{font-size:60px;margin:6px 0;}
+  footer{position:relative;z-index:10;text-align:center;padding:34px 20px 56px;color:var(--maroon);}
+  footer .tag{font-family:"Great Vibes",cursive;font-size:34px;}
+
+  .scroll-hint{position:absolute;bottom:18px;left:0;right:0;text-align:center;font-size:11px;
+    letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);animation:bob 2.4s ease-in-out infinite;}
+  @keyframes bob{0%,100%{transform:translateY(0);}50%{transform:translateY(6px);}}
+
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity 1s ease,transform 1s cubic-bezier(.2,.8,.2,1);}
+  .reveal.in{opacity:1;transform:none;}
+</style>
+</head>
+<body>
+<div class="frame"></div>
+<div id="petals"></div>
+
+<!-- ============ COVER ============ -->
+<section class="panel">
+  <div>
+    <!-- toranam -->
+    <svg class="toranam" viewBox="0 0 520 70" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <line x1="10" y1="10" x2="510" y2="10" stroke="#C2902F" stroke-width="2"/>
+      <g>
+        <!-- repeated leaf + marigold motif -->
+        <g id="td"></g>
+      </g>
+    </svg>
+
+    <div class="om">&#x0950;</div>
+    <p class="invocation">&#x0965; Shubha Vivaham &#x0965;</p>
+
+    <p class="eyebrow">Wedding Invitation</p>
+    <h1 class="names-script">Rajesh<span class="amp">&amp;</span>Sri Kruthi</h1>
+
+    <!-- gopuram -->
+    <svg width="220" height="200" viewBox="0 0 220 200" xmlns="http://www.w3.org/2000/svg" style="margin-top:14px" aria-hidden="true">
+      <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#E7CB86"/><stop offset="1" stop-color="#C2902F"/></linearGradient></defs>
+      <!-- kalash -->
+      <circle cx="110" cy="14" r="6" fill="#C2902F"/>
+      <rect x="106" y="18" width="8" height="10" fill="#C2902F"/>
+      <!-- tiers -->
+      <polygon points="78,46 142,46 132,30 88,30" fill="url(#g)"/>
+      <polygon points="70,70 150,70 138,48 82,48" fill="url(#g)"/>
+      <polygon points="60,98 160,98 146,72 74,72" fill="url(#g)"/>
+      <polygon points="48,130 172,130 156,100 64,100" fill="url(#g)"/>
+      <rect x="40" y="132" width="140" height="46" fill="url(#g)"/>
+      <!-- doorway -->
+      <rect x="98" y="146" width="24" height="32" rx="12" fill="#7B2D34"/>
+      <!-- pillars -->
+      <rect x="46" y="132" width="6" height="46" fill="#7B2D34" opacity="0.5"/>
+      <rect x="168" y="132" width="6" height="46" fill="#7B2D34" opacity="0.5"/>
+    </svg>
+
+    <p class="bigdate" id="coverDate"></p>
+  </div>
+  <div class="scroll-hint">Scroll &#x2193;</div>
+</section>
+
+<!-- ============ INVOCATION / FAMILIES ============ -->
+<section class="reveal">
+  <div class="om" style="font-size:48px">&#x0950;</div>
+  <p class="invocation">&#x0965; Shree Ganeshaya Namaha &#x0965;</p>
+  <div class="divider">&#10086;</div>
+  <p class="lead">We request the honour of your gracious presence<br>at the wedding celebration of</p>
+
+  <h2 class="script" style="font-size:clamp(54px,14vw,86px);color:var(--maroon);margin-top:14px" id="groomName"></h2>
+  <p class="parents" id="groomParents"></p>
+
+  <p class="with">with</p>
+
+  <h2 class="script" style="font-size:clamp(54px,14vw,86px);color:var(--maroon)" id="brideName"></h2>
+  <p class="parents" id="brideParents"></p>
+
+  <p class="bigdate" id="famDate"></p>
+  <div class="divider">&#10086;</div>
+  <p class="city caps" id="famCity"></p>
+
+  <div class="countdown" id="countdown"></div>
+</section>
+
+<!-- ============ EVENTS ============ -->
+<section class="reveal">
+  <p class="eyebrow">The Celebrations</p>
+  <h2 class="caps title">Join Us</h2>
+  <div class="events" id="events"></div>
+</section>
+
+<!-- ============ CLOSING ============ -->
+<section class="reveal panel" style="min-height:auto;padding-top:30px">
+  <div class="namaste">&#x1F64F;</div>
+  <p class="lead" style="color:var(--maroon)">With the blessings of our elders and the love of our families,<br>we await your warm presence.</p>
+</section>
+
+<footer>
+  <div class="divider">&#10086;</div>
+  <div class="tag" id="tag"></div>
+</footer>
+
+<script>
+(function(){
+  const C=CONFIG, $=id=>document.getElementById(id);
+
+  // toranam motif (leaves + marigolds)
+  (function(){
+    let s='';
+    for(let x=20;x<=500;x+=40){
+      s+=`<path d="M${x} 10 q -9 22 0 40 q 9 -18 0 -40 Z" fill="#3F5C3E"/>`;
+      s+=`<circle cx="${x+20}" cy="22" r="6.5" fill="#E0902F"/>`;
+      s+=`<circle cx="${x+20}" cy="22" r="3" fill="#C2902F"/>`;
+    }
+    document.getElementById('td').innerHTML=s;
+  })();
+
+  $('groomName').textContent=C.groomFull||C.groom;
+  $('brideName').textContent=C.brideFull||C.bride;
+  $('groomParents').textContent=C.groomParents||'';
+  $('brideParents').textContent=C.brideParents||'';
+  $('famCity').textContent=C.city||'';
+  $('tag').textContent='#'+(C.hashtag||(C.groom+'Weds'+C.bride));
+  document.title=C.groom+' & '+C.bride+' — Wedding Invitation';
+
+  const wed=C.events[0];
+  const wedStart=new Date(wed.date+'T'+wed.time+':00');
+  const fmtShort=d=>d.toLocaleDateString(undefined,{day:'numeric',month:'long',year:'numeric'});
+  const fmtLong=d=>d.toLocaleDateString(undefined,{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+  const fmtTime=t=>{if(!t)return'';const[h,m]=t.split(':').map(Number);const ap=h>=12?'PM':'AM';return(((h+11)%12)+1)+':'+String(m||0).padStart(2,'0')+' '+ap;};
+  const dd=String(wedStart.getDate()).padStart(2,'0');
+  const monUP=wedStart.toLocaleDateString(undefined,{month:'long'}).toUpperCase();
+  const formalDate=dd+'  |  '+monUP+'  |  '+wedStart.getFullYear();
+  $('coverDate').textContent=formalDate;
+  $('famDate').textContent=formalDate;
+
+  function gcal(ev,start){
+    const end=new Date(start.getTime()+(ev.durationHours||3)*3600000);
+    const pad=n=>String(n).padStart(2,'0');
+    const f=d=>d.getFullYear()+pad(d.getMonth()+1)+pad(d.getDate())+'T'+pad(d.getHours())+pad(d.getMinutes())+'00';
+    const p=new URLSearchParams({action:'TEMPLATE',
+      text:C.groom+' & '+C.bride+' — '+ev.label,
+      dates:f(start)+'/'+f(end),
+      details:'With our families, we joyfully invite you.',
+      location:ev.venue+', '+ev.area});
+    return 'https://www.google.com/calendar/render?'+p.toString();
+  }
+
+  $('events').innerHTML=C.events.map(ev=>{
+    const start=new Date(ev.date+'T'+(ev.time||'00:00')+':00');
+    return `<div class="card">
+      <div class="klabel">${ev.label}</div>
+      <div class="when">${fmtLong(start)}</div>
+      <div class="time">${fmtTime(ev.time)}</div>
+      <div class="venue">${ev.venue}</div>
+      <div class="area">${ev.area}</div>
+      <div class="actions">
+        ${ev.maps?`<a class="btn btn-gold" target="_blank" rel="noopener" href="${ev.maps}">Open in Maps</a>`:''}
+        <a class="btn btn-ghost" target="_blank" rel="noopener" href="${gcal(ev,start)}">Add to Calendar</a>
+      </div></div>`;
+  }).join('');
+
+  // countdown
+  const cd=$('countdown'), target=new Date(C.countdownTo);
+  function tick(){
+    if(isNaN(target)){cd.style.display='none';return;}
+    let diff=Math.max(0,target-new Date());
+    const d=Math.floor(diff/86400000);diff-=d*86400000;
+    const h=Math.floor(diff/3600000);diff-=h*3600000;
+    const m=Math.floor(diff/60000);diff-=m*60000;
+    const s=Math.floor(diff/1000);
+    cd.innerHTML=[['Days',d],['Hours',h],['Mins',m],['Secs',s]]
+      .map(p=>`<div class="cd"><b>${String(p[1]).padStart(2,'0')}</b><span>${p[0]}</span></div>`).join('');
+  }
+  tick();setInterval(tick,1000);
+
+  // falling petals
+  const petals=['🌸','🪷','🌼'];
+  const pc=document.getElementById('petals');
+  for(let i=0;i<12;i++){
+    const s=document.createElement('span');
+    s.className='petal';s.textContent=petals[i%petals.length];
+    s.style.left=Math.random()*100+'vw';
+    s.style.animationDuration=(9+Math.random()*8)+'s';
+    s.style.animationDelay=(-Math.random()*12)+'s';
+    s.style.fontSize=(16+Math.random()*14)+'px';
+    pc.appendChild(s);
+  }
+
+  // scroll reveal
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');}),{threshold:0.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+})();
+</script>
+</body>
+</html>

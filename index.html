@@ -3,294 +3,827 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Rajesh &amp; Sri Kruthi — Wedding Invitation</title>
-<meta name="description" content="With the blessings of our families, we invite you to celebrate our wedding." />
+<title>Rajesh &amp; Sri Kruthi — 05.07.2026</title>
+<meta name="description" content="Rajesh weds Sri Kruthi — July 5, 2026, Visakhapatnam." />
 
-<!-- ================================================================= -->
-<!--  EDIT YOUR DETAILS HERE — this is the only part you need to touch. -->
-<!--  To use real photos later: put image files next to this page       -->
-<!--  (e.g. an "images" folder) and set the paths in `images` below,     -->
-<!--  like  hero: "images/couple.jpg".  While blank, Ghibli-style        -->
-<!--  artwork is shown as a placeholder.                                 -->
-<!-- ================================================================= -->
+<!-- ================ EDIT YOUR DETAILS HERE ================ -->
 <script>
 const CONFIG = {
-  groom: "Rajesh Rudravarjula",
-  bride: "Sri Kruthi Pokunuri",
-  intro: "Together with our families",
-  invite: "request the honour of your presence as we begin our journey together",
-  hashtag: "RajeshWedsSriKruthi",
-  // Countdown points to the wedding ceremony
-  countdownTo: "2026-07-05T06:29:00",
+  groom: "Rajesh", groomFull: "Rajesh Rudravarjula",
+  bride: "Sri Kruthi", brideFull: "Sri Kruthi Pokunuri",
+  hashtag: "RajeshWedsSri",
+  countdownTo: "2026-07-05T06:52:00",
+  // "Aidhurojula Pelli" (Varudu, 2010) — direct JioSaavn CDN stream, full song:
+  songUrl: "https://aac.saavncdn.com/451/b175f17bc977edd0a10330c1eb312238_160.mp4",
+  groomImg: "images/groom.png",
+  brideImg: "images/bride.png",
   events: [
-    {
-      label: "The Wedding",
-      sub: "పెళ్లి · Pelli",
-      date: "2026-07-05",   // 5 July 2026 (DD/MM)
-      time: "06:29",        // 6:29 AM muhurtam
-      venue: "Simba Resort",
-      city: "Visakhapatnam",
-      maps: "https://maps.app.goo.gl/UdxCjvDdrS3TcL518",
-      durationHours: 4,
-      scene: "dawn",
-      image: ""   // optional: "images/wedding.jpg"
-    },
-    {
-      label: "The Reception",
-      sub: "రిసెప్షన్ · Reception",
-      date: "2026-08-11",   // 11 August 2026 (DD/MM)
-      time: "19:00",        // 7:00 PM
-      venue: "Shubha Grand",
-      city: "Hyderabad",
-      maps: "https://maps.app.goo.gl/9fQ4mWJiTDAevimb9",
-      durationHours: 4,
-      scene: "dusk",
-      image: ""   // optional: "images/reception.jpg"
-    }
-  ],
-  images: { hero: "", closing: "" }   // optional photo overrides for the top & bottom scenes
+    { label: "The Wedding", te: "వివాహ మహోత్సవం",
+      date: "2026-07-05", time: "06:52",
+      note: "Muhurtam at 6:52 AM — vows at first light.",
+      venue: "Simba Resorts & Conventions", area: "Pendurthi, Visakhapatnam",
+      maps: "https://maps.app.goo.gl/UdxCjvDdrS3TcL518", durationHours: 4 },
+    { label: "The Reception", te: "రిసెప్షన్",
+      date: "2026-08-11", time: "19:00",
+      note: "An evening of music, dinner & celebration.",
+      venue: "Shubha Grand", area: "Hyderabad",
+      maps: "https://maps.app.goo.gl/9fQ4mWJiTDAevimb9", durationHours: 4 }
+  ]
 };
 </script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Great+Vibes&family=Marcellus&family=Noto+Serif+Telugu:wght@500&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet" />
 
 <style>
-  :root {
-    --gold: #c79a52; --gold-soft: #e7cf9c;
-    --ink: #2a2622; --paper: #fbf6ee;
-    --card: rgba(255,253,248,0.86);
+  :root{
+    --silk:#43091A; --silk-2:#5C102A; --silk-3:#2B040F;
+    --zari:#E9C46A; --zari-d:#C49A3C; --zari-bright:#FFE9A8;
+    --ivory:#FFF6E3; --rose:#E76A7E;
   }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-  body { font-family: "Jost", -apple-system, BlinkMacSystemFont, sans-serif; color: var(--ink);
-    background: var(--paper); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
-  .serif { font-family: "Cormorant Garamond", Georgia, serif; }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{overscroll-behavior:none;}
+  .lenis.lenis-smooth{scroll-behavior:auto!important;}
+  body{
+    font-family:"Cormorant Garamond",Georgia,serif;color:#43091A;
+    background:#F6E3B4;overflow-x:hidden;-webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--silk);color:var(--zari-bright);}
+  img{user-select:none;-webkit-user-drag:none;}
 
-  /* full-bleed scenic panels */
-  .panel { position: relative; min-height: 100vh; min-height: 100svh; display: flex;
-    align-items: center; justify-content: center; text-align: center; padding: 48px 22px; overflow: hidden; }
-  .panel__scene { position: absolute; inset: 0; z-index: 0; }
-  .panel__scene svg, .panel__scene img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .panel__scene.kb svg, .panel__scene.kb img { animation: kb 26s ease-in-out infinite alternate; }
-  @keyframes kb { from { transform: scale(1.06); } to { transform: scale(1.16); } }
-  .panel__content { position: relative; z-index: 2; max-width: 720px; width: 100%;
-    animation: rise 1.3s cubic-bezier(.2,.8,.2,1) both; }
-  @keyframes rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+  /* ---------- background : starts CREAM, turns maroon at the muhurtam ---------- */
+  #bg{position:fixed;inset:0;z-index:0;background:#F6E3B4;will-change:background-color;}
+  #bg .glowmid{position:absolute;inset:0;background:radial-gradient(70% 50% at 50% 55%,rgba(255,250,230,.55),transparent 70%);}
+  #bg .grain{position:absolute;inset:-50%;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.6'/%3E%3C/svg%3E");
+    animation:grain 7s steps(8) infinite;}
+  @keyframes grain{0%,100%{transform:translate(0,0);}25%{transform:translate(-4%,3%);}50%{transform:translate(3%,-4%);}75%{transform:translate(-2%,-2%);}}
+  #bg .vign{position:absolute;inset:0;background:radial-gradient(120% 90% at 50% 50%,transparent 60%,rgba(94,31,41,.18));}
+  #dust{position:fixed;inset:0;z-index:1;pointer-events:none;}
 
-  .eyebrow { font-size: 12px; letter-spacing: 0.4em; text-transform: uppercase; color: #7a5b2c; margin-bottom: 22px; }
-  .names { font-weight: 400; line-height: 1.0; letter-spacing: 0.5px; color: #4a3a26;
-    font-size: clamp(46px, 12vw, 104px); text-shadow: 0 2px 18px rgba(255,255,255,0.45); }
-  .amp { display: block; font-style: italic; color: var(--gold); font-size: clamp(26px, 6vw, 50px); margin: 4px 0; }
-  .invite-line { margin: 24px auto 0; max-width: 440px; font-size: clamp(13px, 3.4vw, 16px);
-    letter-spacing: 0.06em; color: #5c4a33; line-height: 1.7; }
-  .hero__date { margin-top: 26px; font-size: clamp(17px, 4.6vw, 24px); letter-spacing: 0.18em; color: #4a3a26; }
-  .scroll-hint { position: absolute; bottom: 20px; left: 0; right: 0; z-index: 2; text-align: center;
-    font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: #6b5430; animation: bob 2.4s ease-in-out infinite; }
-  @keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
+  /* ---------- preloader ---------- */
+  #loader{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;}
+  #loader .half{position:absolute;left:0;right:0;height:50.5%;background:#F6E3B4;}
+  #loader .half.t{top:0;} #loader .half.b{bottom:0;}
+  #loader .core{position:relative;z-index:2;text-align:center;}
+  #loader .lmono{font-family:"Great Vibes",cursive;font-size:clamp(56px,14vw,110px);color:var(--silk);line-height:1;}
+  #loader .lsub{font-family:"Space Grotesk",sans-serif;font-size:10px;letter-spacing:.6em;text-transform:uppercase;color:#8A5A12;margin-top:14px;}
+  #loader .lbar{width:min(320px,70vw);height:1px;background:rgba(123,45,52,.25);margin:26px auto 0;overflow:hidden;}
+  #loader .lbar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#7B2D34,#B3122F);}
+  #loader .lpct{font-family:"Space Grotesk",sans-serif;font-size:12px;letter-spacing:.3em;color:rgba(67,9,26,.6);margin-top:12px;font-variant-numeric:tabular-nums;}
 
-  /* countdown */
-  .countdown { display: flex; gap: clamp(12px, 5vw, 36px); justify-content: center; margin-top: 34px; }
-  .cd b { display: block; font-family: "Cormorant Garamond", serif; font-weight: 600;
-    font-size: clamp(28px, 7vw, 48px); color: #6b4f24; line-height: 1; }
-  .cd span { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #7a5b2c; }
+  /* ---------- cursor ---------- */
+  #cursor,#cursor2{position:fixed;top:0;left:0;z-index:150;pointer-events:none;border-radius:50%;transform:translate(-50%,-50%);}
+  #cursor{width:8px;height:8px;background:var(--silk);}
+  #cursor2{width:38px;height:38px;border:1px solid rgba(123,45,52,.55);transition:width .3s,height .3s,border-color .3s;}
+  #cursor2.big{width:74px;height:74px;border-color:var(--silk);}
+  body.dark2 #cursor{background:var(--zari-bright);}
+  body.dark2 #cursor2{border-color:rgba(233,196,106,.6);}
+  @media (hover:none){#cursor,#cursor2{display:none;}}
 
-  /* event card overlaid on a scene */
-  .event-card { background: var(--card); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
-    border: 1px solid rgba(199,154,82,0.35); border-radius: 18px; padding: clamp(30px, 6vw, 48px);
-    box-shadow: 0 24px 60px -22px rgba(74,58,38,0.5); max-width: 480px; margin: 0 auto; }
-  .event-card .kicker { font-size: 11px; letter-spacing: 0.36em; text-transform: uppercase; color: var(--gold); }
-  .event-card .sub { font-family: "Cormorant Garamond", serif; font-style: italic; color: #8a6a3a; font-size: 20px; margin-top: 6px; }
-  .event-card h2 { font-family: "Cormorant Garamond", serif; font-weight: 500; font-size: clamp(30px, 7vw, 46px); margin: 6px 0 18px; }
-  .ec-line { font-size: clamp(15px, 4vw, 18px); line-height: 1.6; }
-  .ec-when { font-weight: 500; color: #4a3a26; }
-  .ec-venue { color: #6b5b45; margin-top: 6px; letter-spacing: 0.02em; }
-  .divider { width: 54px; height: 1px; background: var(--gold); margin: 20px auto; opacity: 0.7; }
-  .actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 22px; }
-  .btn { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font-size: 12px;
-    letter-spacing: 0.14em; text-transform: uppercase; padding: 13px 22px; border-radius: 3px; transition: transform .15s, background .2s; }
-  .btn-gold { background: var(--gold); color: #fff; font-weight: 500; }
-  .btn-gold:hover { transform: translateY(-2px); background: #b9893f; }
-  .btn-ghost { border: 1px solid rgba(199,154,82,0.6); color: #8a6a3a; }
-  .btn-ghost:hover { transform: translateY(-2px); background: rgba(199,154,82,0.12); }
+  /* ---------- chrome ---------- */
+  #chrome{position:fixed;inset:0;z-index:90;pointer-events:none;
+    font-family:"Space Grotesk",sans-serif;font-size:10px;letter-spacing:.34em;text-transform:uppercase;color:rgba(67,9,26,.7);}
+  #chrome .c{position:absolute;padding:22px 26px;}
+  #chrome .tl{top:0;left:0;font-family:"Great Vibes",cursive;font-size:26px;letter-spacing:0;text-transform:none;color:inherit;}
+  #chrome .tr{top:0;right:0;}
+  #chrome .bl{bottom:0;left:0;}
+  #chrome .br{bottom:0;right:0;font-variant-numeric:tabular-nums;}
+  @media(max-width:640px){#chrome .tr,#chrome .bl{display:none;}}
+  #pbar{position:fixed;left:0;top:0;height:2px;width:100%;z-index:95;transform-origin:0 50%;transform:scaleX(0);
+    background:linear-gradient(90deg,#7B2D34,#B3122F);box-shadow:0 0 14px rgba(179,18,47,.5);}
 
-  footer { text-align: center; padding: 40px 20px 50px; color: #8a7a62; font-size: 12px; letter-spacing: 0.22em; }
-  .reveal { opacity: 0; transform: translateY(26px); transition: opacity .9s ease, transform .9s cubic-bezier(.2,.8,.2,1); }
-  .reveal.in { opacity: 1; transform: none; }
+  /* ---------- skip to calendar ---------- */
+  #skipCal{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:96;
+    display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:999px;cursor:pointer;
+    font-family:"Space Grotesk",sans-serif;font-size:10px;letter-spacing:.22em;text-transform:uppercase;
+    color:#FFF6E3;background:rgba(94,16,42,.88);border:1px solid rgba(123,45,52,.4);
+    backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);text-decoration:none;
+    box-shadow:0 10px 28px -12px rgba(94,16,42,.6);
+    opacity:0;pointer-events:none;transition:transform .25s,box-shadow .25s,opacity .6s;}
+  #skipCal.show{opacity:1;pointer-events:auto;}
+  #skipCal:hover{transform:translateX(-50%) translateY(-2px);}
+  #skipCal .pin{font-size:13px;letter-spacing:0;}
+  @media(max-width:560px){#skipCal{padding:9px 15px;font-size:9px;letter-spacing:.14em;}}
+
+  /* ---------- floating calendar button : compact FAB + pop-up sheet ---------- */
+  #fab{position:fixed;right:16px;bottom:18px;z-index:96;opacity:0;pointer-events:none;transition:opacity .6s;}
+  #fab.show{opacity:1;pointer-events:auto;}
+  #fabBtn{width:56px;height:56px;border-radius:50%;border:none;cursor:pointer;
+    background:linear-gradient(150deg,#7B2D34,#5E102A);color:#FFE9A8;font-size:22px;line-height:1;
+    box-shadow:0 14px 34px -10px rgba(94,16,42,.65);
+    display:flex;align-items:center;justify-content:center;
+    transition:transform .3s cubic-bezier(.34,1.56,.64,1),box-shadow .3s,background .6s;}
+  #fabBtn:hover{transform:translateY(-3px) scale(1.05);}
+  #fab.open #fabBtn{transform:rotate(45deg);}
+  body.dark2 #fabBtn{background:linear-gradient(150deg,var(--zari-bright),var(--zari-d));color:#43091A;}
+  #fabSheet{position:absolute;right:0;bottom:70px;width:min(78vw,270px);
+    border-radius:18px;padding:14px 16px;background:rgba(255,250,236,.97);
+    border:1px solid rgba(123,45,52,.25);box-shadow:0 26px 60px -24px rgba(67,9,26,.5);
+    transform:translateY(14px) scale(.92);opacity:0;pointer-events:none;transform-origin:100% 100%;
+    transition:transform .35s cubic-bezier(.22,1,.36,1),opacity .3s;}
+  #fab.open #fabSheet{transform:none;opacity:1;pointer-events:auto;}
+  #fabSheet .frow{padding:10px 2px;}
+  #fabSheet .frow + .frow{border-top:1px solid rgba(123,45,52,.15);}
+  #fabSheet .flbl{font-family:"Marcellus",serif;font-size:14px;color:#43091A;}
+  #fabSheet .fsub{font-family:"Space Grotesk",sans-serif;font-size:10px;color:#8A5A12;margin-top:2px;
+    overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  #fabSheet .fbtns{display:flex;gap:8px;margin-top:9px;}
+  #fabSheet a{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:6px;text-decoration:none;
+    font-family:"Space Grotesk",sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+    padding:9px 0;border-radius:999px;}
+  #fabSheet a.map{background:#5E102A;color:#FFE9A8;font-weight:500;}
+  #fabSheet a.cal{border:1px solid rgba(123,45,52,.45);color:#7B2D34;}
+
+  /* ---------- music toggle ---------- */
+  #musicBtn{position:fixed;left:16px;bottom:18px;z-index:96;width:46px;height:46px;border-radius:50%;
+    border:1px solid rgba(123,45,52,.45);cursor:pointer;font-size:18px;line-height:1;
+    background:rgba(255,250,236,.92);color:#7B2D34;box-shadow:0 10px 26px -10px rgba(94,16,42,.5);
+    display:none;align-items:center;justify-content:center;transition:transform .25s,background .6s,color .6s;}
+  #musicBtn.ready{display:flex;}
+  #musicBtn:hover{transform:translateY(-2px);}
+  #musicBtn.playing{animation:mpulse 1.6s ease-in-out infinite;}
+  #musicBtn.paused{opacity:.75;}
+  #musicBtn.paused:after{content:"";position:absolute;width:2px;height:26px;background:#7B2D34;
+    transform:rotate(45deg);border-radius:2px;}
+  body.dark2 #musicBtn{background:rgba(67,9,26,.85);color:var(--zari-bright);border-color:rgba(233,196,106,.5);}
+  body.dark2 #musicBtn.paused:after{background:var(--zari-bright);}
+  @keyframes mpulse{0%,100%{box-shadow:0 10px 26px -10px rgba(94,16,42,.5),0 0 0 0 rgba(179,18,47,.35);}
+    50%{box-shadow:0 10px 26px -10px rgba(94,16,42,.5),0 0 0 12px rgba(179,18,47,0);}}
+
+  main{position:relative;z-index:10;}
+  .chapter{font-family:"Space Grotesk",sans-serif;font-size:11px;letter-spacing:.5em;text-transform:uppercase;color:#8A5A12;}
+  .chapter i{font-style:normal;color:var(--rose);}
+
+  /* ---------- HERO ---------- */
+  #hero{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;padding:0 20px;}
+  .h-row{overflow:hidden;padding:.08em 0;}
+  .h-row .inner{display:block;will-change:transform;}
+  .h-big{font-family:"Marcellus",serif;font-size:clamp(52px,13.5vw,160px);letter-spacing:.02em;line-height:1;
+    background:linear-gradient(165deg,var(--zari-bright) 25%,var(--zari) 60%,var(--zari-d));
+    -webkit-background-clip:text;background-clip:text;color:transparent;}
+  .h-weds{font-family:"Great Vibes",cursive;font-size:clamp(28px,6.6vw,58px);color:var(--rose);text-shadow:0 0 34px rgba(231,106,126,.5);}
+  .h-meta{margin-top:42px;font-family:"Space Grotesk",sans-serif;font-size:clamp(11px,3vw,14px);
+    letter-spacing:.34em;text-transform:uppercase;color:rgba(255,246,227,.8);}
+  .h-meta b{color:var(--zari-bright);font-weight:500;}
+  #heroHint{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);
+    font-family:"Space Grotesk",sans-serif;font-size:10px;letter-spacing:.5em;text-transform:uppercase;color:rgba(123,45,52,.85);}
+  #heroHint:after{content:"";display:block;width:1px;height:44px;margin:12px auto 0;
+    background:linear-gradient(180deg,#7B2D34,transparent);animation:hint 2s ease-in-out infinite;}
+  @keyframes hint{0%{transform:scaleY(0);transform-origin:top;}45%{transform:scaleY(1);transform-origin:top;}
+    55%{transform:scaleY(1);transform-origin:bottom;}100%{transform:scaleY(0);transform-origin:bottom;}}
+
+  /* ---------- 01 R+S becomes rings ---------- */
+  #morph{height:380svh;position:relative;}
+  #morph .stage{position:sticky;top:0;height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;text-align:center;}
+  #morphSvg{width:min(96vw,1100px);height:auto;overflow:visible;}
+  #morphSvg .trail{fill:none;stroke:url(#gA);stroke-width:5;stroke-linecap:round;stroke-linejoin:round;
+    filter:drop-shadow(0 2px 8px rgba(123,45,52,.35));}
+  #morphSvg .trail.b{stroke:url(#gB);}
+  #morphSvg .tip{fill:#B3122F;filter:drop-shadow(0 0 10px rgba(231,106,126,.9));}
+  #morphSvg #join{opacity:0;filter:drop-shadow(0 0 14px rgba(231,106,126,.8));}
+  /* mobile: zoom the artwork so the letters fill the phone screen;
+     the travel lines simply run off-canvas */
+  @media(max-width:640px){
+    #morphSvg{width:235vw;max-width:none;transform:translateX(-6vw);}
+    #morph .stage{overflow:hidden;}
+  }
+  #morphCap{margin-top:34px;}
+  #morphCap .cap1{font-family:"Great Vibes",cursive;font-size:clamp(34px,8vw,64px);color:#5E102A;opacity:0;}
+  #morphCap .cap2{font-family:"Space Grotesk",sans-serif;font-size:11px;letter-spacing:.4em;text-transform:uppercase;color:#8A5A12;margin-top:14px;opacity:0;}
+
+  /* ---------- 02 horizontal story ---------- */
+  #story{position:relative;}
+  #storyTrack{display:flex;height:100svh;width:max-content;align-items:center;will-change:transform;}
+  .spanel{flex:none;width:100vw;height:100svh;display:flex;align-items:center;justify-content:center;padding:0 6vw;}
+  .scard{display:flex;align-items:center;gap:clamp(22px,4vw,60px);max-width:980px;flex-wrap:wrap;justify-content:center;}
+  .sphoto{width:clamp(210px,29vw,350px);aspect-ratio:3/4;border-radius:200px 200px 22px 22px;overflow:hidden;position:relative;
+    border:2px solid rgba(123,45,52,.45);box-shadow:0 40px 80px -40px rgba(67,9,26,.45),0 0 50px -18px rgba(123,45,52,.25);
+    background:#FFFDF6;}
+  .sphoto img{width:118%;height:118%;object-fit:cover;object-position:top center;display:block;will-change:transform;}
+  .sphoto.noimg img{display:none;}
+  .sphoto.noimg:after{content:attr(data-initial);position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    font-family:"Great Vibes",cursive;font-size:110px;color:var(--zari-d);}
+  .stext{max-width:420px;text-align:left;}
+  .stext .chapter{margin-bottom:16px;}
+  .stext h3{font-family:"Marcellus",serif;font-size:clamp(28px,5.4vw,48px);color:#5E102A;line-height:1.12;}
+  .stext p{font-size:clamp(16px,2.6vw,20px);font-style:italic;line-height:1.8;color:rgba(67,9,26,.8);margin-top:16px;}
+  .heartpanel{flex-direction:column;gap:30px;text-align:center;}
+  .heartpanel .bigheart{font-size:clamp(60px,12vw,110px);color:var(--rose);text-shadow:0 0 60px rgba(231,106,126,.8);}
+  .heartpanel h3{font-family:"Great Vibes",cursive;font-size:clamp(38px,8.6vw,80px);color:#5E102A;}
+
+  /* mobile: the story stacks vertically — no pinning, nothing can go missing */
+  @media(max-width:767px){
+    #storyTrack{display:block;height:auto;width:100%;}
+    .spanel{width:100%;height:auto;min-height:0;padding:64px 7vw;}
+    .spanel:first-child{padding-top:90px;}
+    .scard{gap:26px;}
+    .sphoto{width:min(70vw,320px);}
+    .sphoto img{width:100%;height:100%;}
+    .stext{text-align:center;max-width:90vw;}
+    .heartpanel{padding:10px 0;}
+  }
+
+  /* ---------- 03 date ---------- */
+  #date{height:300svh;position:relative;}
+  #date .stage{position:sticky;top:0;height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;text-align:center;}
+  #dateNum{font-family:"Marcellus",serif;font-size:clamp(40px,11vw,180px);line-height:1;color:#43091A;will-change:transform;letter-spacing:.02em;
+    transition:color .9s ease;}
+  #dateSub{font-family:"Space Grotesk",sans-serif;font-size:clamp(10px,2.8vw,15px);letter-spacing:.4em;text-transform:uppercase;margin-top:26px;color:#8A5A12;transition:color .9s ease;}
+  #dateTe{font-family:"Noto Serif Telugu",serif;font-size:clamp(18px,4.6vw,30px);margin-top:16px;color:#B3122F;transition:color .9s ease;}
+  #date .stage.lit #dateNum{color:var(--zari-bright);}
+  #date .stage.lit #dateSub{color:var(--zari);}
+  #date .stage.lit #dateTe{color:var(--rose);}
+
+  /* ---------- 04 countdown ---------- */
+  #count{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:90px 22px;}
+  #count h2{font-family:"Great Vibes",cursive;font-size:clamp(40px,9vw,80px);color:var(--zari-bright);margin-top:14px;}
+  .cd-wrap{display:flex;gap:clamp(8px,2.6vw,26px);margin-top:50px;flex-wrap:wrap;justify-content:center;}
+  .cd{min-width:clamp(74px,19vw,130px);padding:26px 8px 20px;border-radius:20px;position:relative;overflow:hidden;
+    background:linear-gradient(180deg,rgba(255,246,227,.07),rgba(255,246,227,.015));border:1px solid rgba(233,196,106,.4);}
+  .cd b{display:block;font-family:"Marcellus",serif;font-size:clamp(34px,9vw,72px);color:var(--zari-bright);line-height:1;font-variant-numeric:tabular-nums;}
+  .cd span{display:block;margin-top:10px;font-family:"Space Grotesk",sans-serif;font-size:9px;letter-spacing:.4em;text-transform:uppercase;color:var(--zari);}
+
+  /* ---------- 05 events ---------- */
+  #events{min-height:100svh;padding:120px clamp(22px,6vw,60px) 160px;max-width:1080px;margin:0 auto;text-align:center;}
+  #events h2{font-family:"Great Vibes",cursive;font-size:clamp(40px,9vw,80px);color:var(--ivory);margin-top:14px;}
+  .egrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:30px;margin-top:60px;text-align:left;}
+  .ecard{position:relative;border-radius:26px;padding:40px 32px;overflow:hidden;
+    background:linear-gradient(180deg,rgba(255,246,227,.07),rgba(255,246,227,.02));
+    border:1px solid rgba(233,196,106,.45);will-change:transform;}
+  .ecard .num{position:absolute;top:18px;right:24px;font-family:"Marcellus",serif;font-size:64px;color:rgba(233,196,106,.13);line-height:1;}
+  .ecard .lbl{font-family:"Marcellus",serif;font-size:clamp(24px,4.6vw,32px);color:var(--zari-bright);}
+  .ecard .te{font-family:"Noto Serif Telugu",serif;font-size:16px;color:var(--zari);margin-top:4px;}
+  .ecard .note{font-style:italic;color:rgba(255,246,227,.82);margin-top:14px;font-size:17px;line-height:1.7;}
+  .ecard .meta{font-family:"Space Grotesk",sans-serif;font-size:13px;letter-spacing:.05em;line-height:2.1;margin-top:18px;color:var(--ivory);}
+  .ecard .meta b{color:var(--zari-bright);font-weight:500;}
+  .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px;}
+  .btn{position:relative;display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-family:"Space Grotesk",sans-serif;
+    font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:15px 26px;border-radius:999px;overflow:hidden;will-change:transform;}
+  .btn-fill{background:linear-gradient(135deg,var(--zari-bright),var(--zari-d));color:#3A0712;font-weight:500;}
+  .btn-line{border:1px solid rgba(233,196,106,.7);color:var(--zari-bright);}
+
+  /* ---------- footer ---------- */
+  footer{position:relative;z-index:10;padding:110px 0 130px;text-align:center;overflow:hidden;}
+  .fmarq{white-space:nowrap;font-family:"Marcellus",serif;font-size:clamp(50px,11vw,140px);line-height:1.05;
+    color:transparent;-webkit-text-stroke:1.2px rgba(233,196,106,.55);will-change:transform;}
+  footer .fin{font-family:"Great Vibes",cursive;font-size:clamp(34px,8vw,60px);color:var(--ivory);margin-top:70px;}
+  footer .sub{font-family:"Space Grotesk",sans-serif;font-size:10px;letter-spacing:.4em;text-transform:uppercase;color:rgba(255,246,227,.55);margin-top:20px;}
+
+  /* after the muhurtam the page is maroon; the gold-styled sections below sit on it.
+     only the small chapter labels need a colour flip */
+  .chapter{transition:color .9s ease;}
+  body.dark2 .chapter{color:var(--zari);}
+
+  @media (prefers-reduced-motion: reduce){#loader{display:none;}}
 </style>
 </head>
 <body>
 
-  <!-- HERO -->
-  <header class="panel">
-    <div class="panel__scene kb" data-scene="dawn" id="heroScene"></div>
-    <div class="panel__content">
-      <p class="eyebrow" id="intro"></p>
-      <h1 class="serif names"><span id="g"></span><span class="amp">&amp;</span><span id="b"></span></h1>
-      <p class="invite-line" id="invite"></p>
-      <p class="hero__date serif" id="heroDate"></p>
-      <div class="countdown" id="countdown"></div>
+<div id="bg"><div class="glowmid"></div><div class="grain"></div><div class="vign"></div></div>
+<canvas id="dust"></canvas>
+
+<!-- preloader -->
+<div id="loader">
+  <div class="half t"></div><div class="half b"></div>
+  <div class="core">
+    <div class="lmono">R &amp; S</div>
+    <div class="lsub">05 · 07 · 2026</div>
+    <div class="lbar"><i id="lfill"></i></div>
+    <div class="lpct" id="lpct">0%</div>
+  </div>
+</div>
+
+<div id="cursor"></div><div id="cursor2"></div>
+<div id="pbar"></div>
+
+<a id="skipCal" href="#events"><span class="pin">📍</span> Skip to Venue &amp; Calendar</a>
+
+<!-- background song -->
+<audio id="bgm" preload="auto"></audio>
+<button id="musicBtn" aria-label="Mute music">♪</button>
+
+<div id="fab" aria-label="Venues and calendar">
+  <div id="fabSheet">
+    <div class="frow">
+      <div class="flbl">Wedding · Jul 5, 6:52 AM</div>
+      <div class="fsub" id="fabV1"></div>
+      <div class="fbtns" id="fabB1"></div>
     </div>
-    <div class="scroll-hint">Scroll</div>
-  </header>
+    <div class="frow">
+      <div class="flbl">Reception · Aug 11, 7 PM</div>
+      <div class="fsub" id="fabV2"></div>
+      <div class="fbtns" id="fabB2"></div>
+    </div>
+  </div>
+  <button id="fabBtn" aria-label="Open venues and calendar">📅</button>
+</div>
 
-  <!-- EVENTS render here -->
-  <main id="events"></main>
+<div id="chrome">
+  <div class="c tl">R&amp;S</div>
+  <div class="c tr">Wedding · 2026</div>
+  <div class="c bl">Visakhapatnam, IN</div>
+  <div class="c br" id="clock">06:52</div>
+</div>
 
-  <!-- CLOSING -->
-  <section class="panel">
-    <div class="panel__scene" data-scene="dusk" id="closingScene"></div>
-    <div class="panel__content">
-      <p class="eyebrow">With love &amp; blessings</p>
-      <h2 class="serif names"><span id="g2"></span><span class="amp">&amp;</span><span id="b2"></span></h2>
-      <p class="invite-line">We can't wait to celebrate with you.</p>
+<main>
+  <!-- OPENING : two lines write Rajesh & Sri Kruthi's initials -->
+  <section id="morph">
+    <div class="stage">
+      <p class="chapter" style="margin-bottom:26px">The Wedding Of</p>
+      <svg id="morphSvg" viewBox="0 0 1200 520" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="gA" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#B3122F"/><stop offset="1" stop-color="#7B2D34"/>
+          </linearGradient>
+          <linearGradient id="gB" x1="1" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#E76A7E"/><stop offset="1" stop-color="#B3122F"/>
+          </linearGradient>
+        </defs>
+        <!-- one continuous line from the LEFT writes a fluid cursive R -->
+        <path id="lineR" class="trail" d="M -100 200
+          C 140 90, 280 330, 400 330
+          C 440 330, 470 336, 490 330
+          C 503 322, 508 305, 510 280
+          C 513 230, 513 175, 515 130
+          C 517 110, 530 103, 545 108
+          C 602 120, 640 144, 632 188
+          C 625 220, 578 236, 537 227
+          C 570 250, 606 302, 630 344
+          C 642 356, 666 342, 682 324"/>
+        <!-- one continuous line from the RIGHT writes a fluid cursive S -->
+        <path id="lineS" class="trail b" d="M 1300 160
+          C 1060 50, 990 290, 870 180
+          C 845 162, 825 152, 808 146
+          C 786 110, 728 106, 710 144
+          C 696 176, 722 200, 750 216
+          C 786 236, 800 268, 784 304
+          C 766 342, 710 350, 684 322"/>
+        <!-- glowing tips that ride each line -->
+        <circle id="tipR" class="tip" r="7" cx="-100" cy="200"/>
+        <circle id="tipS" class="tip" r="7" cx="1300" cy="160"/>
+        <!-- soft glow where the two lines flow into each other -->
+        <g id="join">
+          <circle cx="683" cy="323" r="22" fill="none" stroke="#B3122F" stroke-width="1.6" opacity=".5"/>
+          <circle cx="683" cy="323" r="6" fill="#B3122F" opacity=".85"/>
+        </g>
+      </svg>
+      <div id="morphCap">
+        <div class="cap1" id="cap1">two journeys, one destiny</div>
+        <div class="cap2" id="cap2">Rajesh &nbsp;✦&nbsp; Sri Kruthi &nbsp;—&nbsp; bound for life</div>
+      </div>
+      <div id="heroHint">Scroll</div>
     </div>
   </section>
-  <footer id="footer"></footer>
 
+  <!-- 02 : the couple -->
+  <section id="story">
+    <div id="storyTrack">
+      <div class="spanel">
+        <div class="scard">
+          <div class="sphoto" data-initial="R"><img id="groomImg" alt="Rajesh" /></div>
+          <div class="stext">
+            <p class="chapter">The Groom</p>
+            <h3 id="groomFull">Rajesh Rudravarjula</h3>
+            <p>Son of the Rudravarjula family — the one who said
+            "let's just see where this goes" and then never looked away.</p>
+          </div>
+        </div>
+      </div>
+      <div class="spanel">
+        <div class="scard heartpanel">
+          <div class="bigheart">❤</div>
+          <h3>and then, everything changed</h3>
+        </div>
+      </div>
+      <div class="spanel">
+        <div class="scard">
+          <div class="sphoto" data-initial="S"><img id="brideImg" alt="Sri Kruthi" /></div>
+          <div class="stext">
+            <p class="chapter">The Bride</p>
+            <h3 id="brideFull">Sri Kruthi Pokunuri</h3>
+            <p>Daughter of the Pokunuri family — the smile that turned
+            an ordinary story into the one worth telling forever.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 : the date -->
+  <section id="date">
+    <div class="stage" id="dateStage">
+      <p class="chapter">The Muhurtam</p>
+      <div id="dateNum">05.07.2026</div>
+      <div id="dateSub">Sunday · 6:52 AM · First light</div>
+      <div id="dateTe">శుభ ముహూర్తం</div>
+    </div>
+  </section>
+
+  <!-- 04 : countdown -->
+  <section id="count">
+    <p class="chapter">Counting Down</p>
+    <h2>every second until you</h2>
+    <div class="cd-wrap" id="countdown"></div>
+  </section>
+
+  <!-- 05 : events -->
+  <section id="events">
+    <p class="chapter">The Celebrations</p>
+    <h2>be there with us</h2>
+    <div class="egrid" id="eventsGrid"></div>
+  </section>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lenis/1.1.14/lenis.min.js"></script>
 <script>
-/* ---------- Ghibli-style placeholder scenery (hand-drawn SVG) ---------- */
-function scene(kind) {
-  if (kind === 'dusk') {
-    return `<svg viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="duskSky" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stop-color="#2b2a52"/><stop offset="0.45" stop-color="#6b4a76"/>
-          <stop offset="0.72" stop-color="#cc6f73"/><stop offset="1" stop-color="#f4b06a"/>
-        </linearGradient>
-        <radialGradient id="moon" cx="0.5" cy="0.5" r="0.5">
-          <stop offset="0" stop-color="#fff7e6"/><stop offset="0.7" stop-color="#ffeec9"/><stop offset="1" stop-color="#ffeec9" stop-opacity="0"/>
-        </radialGradient>
-      </defs>
-      <rect width="1200" height="800" fill="url(#duskSky)"/>
-      <g fill="#fff" opacity="0.85">
-        <circle cx="180" cy="120" r="2"/><circle cx="320" cy="80" r="1.6"/><circle cx="500" cy="140" r="1.8"/>
-        <circle cx="760" cy="90" r="2.2"/><circle cx="980" cy="150" r="1.6"/><circle cx="1080" cy="70" r="2"/>
-        <circle cx="240" cy="220" r="1.4"/><circle cx="640" cy="40" r="1.4"/><circle cx="860" cy="200" r="1.5"/>
-      </g>
-      <circle cx="900" cy="250" r="150" fill="url(#moon)"/>
-      <circle cx="900" cy="250" r="62" fill="#fff7e6"/>
-      <g fill="#ffffff" opacity="0.5">
-        <ellipse cx="300" cy="330" rx="150" ry="28"/><ellipse cx="430" cy="350" rx="120" ry="24"/>
-        <ellipse cx="820" cy="400" rx="170" ry="26"/>
-      </g>
-      <path d="M0 560 Q 200 500 420 545 T 820 540 T 1200 560 V800 H0 Z" fill="#7a5a78"/>
-      <path d="M0 630 Q 260 570 540 615 T 1000 612 T 1200 632 V800 H0 Z" fill="#4a3a5e"/>
-      <path d="M0 710 Q 320 660 660 700 T 1200 706 V800 H0 Z" fill="#2e2742"/>
-    </svg>`;
-  }
-  // dawn (default)
-  return `<svg viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <linearGradient id="dawnSky" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stop-color="#bfe4ff"/><stop offset="0.45" stop-color="#ffe9cf"/>
-        <stop offset="0.78" stop-color="#ffd3ad"/><stop offset="1" stop-color="#f7c39b"/>
-      </linearGradient>
-      <radialGradient id="sun" cx="0.5" cy="0.5" r="0.5">
-        <stop offset="0" stop-color="#fffaf0"/><stop offset="0.6" stop-color="#ffe9b8"/><stop offset="1" stop-color="#ffe9b8" stop-opacity="0"/>
-      </radialGradient>
-    </defs>
-    <rect width="1200" height="800" fill="url(#dawnSky)"/>
-    <circle cx="600" cy="430" r="300" fill="url(#sun)"/>
-    <circle cx="600" cy="440" r="92" fill="#fff6dc"/>
-    <g fill="#ffffff" opacity="0.9">
-      <ellipse cx="230" cy="180" rx="120" ry="34"/><ellipse cx="320" cy="200" rx="90" ry="26"/>
-      <ellipse cx="930" cy="150" rx="140" ry="36"/><ellipse cx="1030" cy="172" rx="95" ry="26"/>
-      <ellipse cx="640" cy="120" rx="80" ry="22" opacity="0.7"/>
-    </g>
-    <g stroke="#6b5b45" stroke-width="3" fill="none" opacity="0.55" stroke-linecap="round">
-      <path d="M150 300 q 14 -14 28 0"/><path d="M196 300 q 14 -14 28 0"/>
-      <path d="M980 250 q 12 -12 24 0"/><path d="M1018 250 q 12 -12 24 0"/>
-    </g>
-    <path d="M0 580 Q 220 520 460 562 T 880 558 T 1200 580 V800 H0 Z" fill="#9cc79a"/>
-    <path d="M0 650 Q 280 595 580 636 T 1040 632 T 1200 652 V800 H0 Z" fill="#6fae7e"/>
-    <path d="M0 724 Q 340 676 700 716 T 1200 720 V800 H0 Z" fill="#4f8a64"/>
-  </svg>`;
-}
+(function(){
+  const C=CONFIG, $=s=>document.querySelector(s);
+  const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const touch=matchMedia('(hover: none)').matches;
+  gsap.registerPlugin(ScrollTrigger);
+  /* mobile-first: ignore URL-bar resizes (they used to break downward scroll triggers)
+     and normalize touch scrolling so scrubbed animations stay in sync */
+  ScrollTrigger.config({ignoreMobileResize:true});
+  if(touch){try{ScrollTrigger.normalizeScroll(true);}catch(e){}}
 
-(function () {
-  const C = CONFIG, $ = id => document.getElementById(id);
-  $('g').textContent = $('g2').textContent = C.groom;
-  $('b').textContent = $('b2').textContent = C.bride;
-  $('intro').textContent = C.intro || '';
-  $('invite').textContent = C.invite || '';
-  document.title = C.groom + ' & ' + C.bride + ' — Wedding Invitation';
-
-  // place hero / closing scenes (photo overrides if provided)
-  function fillScene(el, kind, img) {
-    if (img) el.innerHTML = "<img src='" + img + "' alt='' />";
-    else el.innerHTML = scene(kind);
-  }
-  fillScene($('heroScene'), 'dawn', C.images && C.images.hero);
-  fillScene($('closingScene'), 'dusk', C.images && C.images.closing);
-
-  function fmtDateLong(d) { return d.toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }); }
-  function fmtDateShort(d) { return d.toLocaleDateString(undefined, { day: 'numeric', month: 'long', year: 'numeric' }); }
-  function fmtTime(t) { if (!t) return ''; const [h, m] = t.split(':').map(Number); const ap = h >= 12 ? 'PM' : 'AM'; return (((h + 11) % 12) + 1) + ':' + String(m || 0).padStart(2, '0') + ' ' + ap; }
-  function gcal(ev, start) {
-    const end = new Date(start.getTime() + (ev.durationHours || 3) * 3600000);
-    const pad = n => String(n).padStart(2, '0');
-    const f = d => d.getFullYear() + pad(d.getMonth() + 1) + pad(d.getDate()) + 'T' + pad(d.getHours()) + pad(d.getMinutes()) + '00';
-    const p = new URLSearchParams({ action: 'TEMPLATE',
-      text: C.groom + ' & ' + C.bride + ' — ' + ev.label,
-      dates: f(start) + '/' + f(end),
-      details: 'With our families, we joyfully invite you.',
-      location: ev.venue + ', ' + ev.city });
-    return 'https://www.google.com/calendar/render?' + p.toString();
+  /* ============ smooth scroll (desktop only — native scroll on phones) ============ */
+  let lenis=null;
+  if(window.Lenis && !reduced && !touch){
+    lenis=new Lenis({duration:1.25,easing:t=>Math.min(1,1.001-Math.pow(2,-10*t)),smoothWheel:true});
+    lenis.on('scroll',ScrollTrigger.update);
+    gsap.ticker.add(t=>lenis.raf(t*1000));
+    gsap.ticker.lagSmoothing(0);
   }
 
-  // wedding date for the hero line + countdown
-  const wed = C.events[0];
-  const wedStart = new Date(wed.date + 'T' + wed.time + ':00');
-  $('heroDate').textContent = fmtDateShort(wedStart);
-
-  // render event panels
-  const host = $('events');
-  C.events.forEach(ev => {
-    const start = new Date(ev.date + 'T' + (ev.time || '00:00') + ':00');
-    const sec = document.createElement('section');
-    sec.className = 'panel';
-    sec.innerHTML =
-      "<div class='panel__scene' data-scene='" + ev.scene + "'></div>" +
-      "<div class='panel__content reveal'>" +
-        "<div class='event-card'>" +
-          "<p class='kicker'>" + ev.label + "</p>" +
-          (ev.sub ? "<p class='sub'>" + ev.sub + "</p>" : "") +
-          "<h2 class='serif'>" + C.groom.split(' ')[0] + " &amp; " + C.bride.split(' ')[0] + "</h2>" +
-          "<p class='ec-line ec-when'>" + fmtDateLong(start) + "<br>" + fmtTime(ev.time) + "</p>" +
-          "<div class='divider'></div>" +
-          "<p class='ec-line ec-venue'><strong>" + ev.venue + "</strong><br>" + ev.city + "</p>" +
-          "<div class='actions'>" +
-            (ev.maps ? "<a class='btn btn-gold' target='_blank' rel='noopener' href='" + ev.maps + "'>Open in Maps</a>" : "") +
-            "<a class='btn btn-ghost' target='_blank' rel='noopener' href='" + gcal(ev, start) + "'>Add to Calendar</a>" +
-          "</div>" +
-        "</div>" +
-      "</div>";
-    host.appendChild(sec);
-    fillScene(sec.querySelector('.panel__scene'), ev.scene, ev.image);
+  /* ============ portraits (tries several names/locations before falling back) ============ */
+  [['groomImg','groom'],['brideImg','bride']].forEach(([id,name])=>{
+    const img=document.getElementById(id);
+    const candidates=[];
+    ['images/','img/',''].forEach(dir=>
+      ['png','jpg','jpeg','webp','png.png','jpg.jpg','jpeg.jpg'].forEach(ext=>candidates.push(dir+name+'.'+ext)));
+    let i=0;
+    img.onerror=()=>{
+      i++;
+      if(i<candidates.length)img.src=candidates[i];
+      else img.closest('.sphoto').classList.add('noimg');
+    };
+    img.src=candidates[0];
   });
 
-  // countdown to the wedding
-  const cd = $('countdown');
-  const target = new Date(C.countdownTo);
-  function tick() {
-    if (isNaN(target)) { cd.style.display = 'none'; return; }
-    let diff = Math.max(0, target - new Date());
-    const d = Math.floor(diff / 86400000); diff -= d * 86400000;
-    const h = Math.floor(diff / 3600000); diff -= h * 3600000;
-    const m = Math.floor(diff / 60000); diff -= m * 60000;
-    const s = Math.floor(diff / 1000);
-    cd.innerHTML = [['Days', d], ['Hours', h], ['Mins', m], ['Secs', s]]
-      .map(p => "<div class='cd'><b>" + String(p[1]).padStart(2, '0') + "</b><span>" + p[0] + "</span></div>").join('');
+  /* ============ preloader ============ */
+  function revealUI(delay){
+    gsap.fromTo('#heroHint',{opacity:0,y:24},
+      {opacity:1,y:0,duration:1,ease:"power3.out",delay,
+       onComplete:()=>{ // intro done -> reveal skip pill + floating calendar button
+         $('#skipCal').classList.add('show');
+         $('#fab').classList.add('show');
+       }});
   }
-  tick(); setInterval(tick, 1000);
+  const loader=$('#loader');
+  if(reduced){loader.remove();revealUI(0);}
+  else{
+    let p={v:0};
+    gsap.to(p,{v:100,duration:1.9,ease:"power2.inOut",
+      onUpdate:()=>{$('#lfill').style.width=p.v+'%';$('#lpct').textContent=Math.round(p.v)+'%';},
+      onComplete:()=>{
+        const tl=gsap.timeline({onComplete:()=>loader.remove()});
+        tl.to('#loader .core',{opacity:0,y:-30,duration:.5,ease:"power2.in"})
+          .to('#loader .half.t',{yPercent:-101,duration:1,ease:"power4.inOut"},"<.2")
+          .to('#loader .half.b',{yPercent:101,duration:1,ease:"power4.inOut"},"<");
+        revealUI(.9);
+      }});
+  }
 
-  // scroll reveal
-  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); }), { threshold: 0.15 });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  /* ============ 01 two lines travel in and write R & S ============ */
+  (function(){
+    const pR=document.getElementById('lineR'), pS=document.getElementById('lineS');
+    const tR=document.getElementById('tipR'), tS=document.getElementById('tipS');
+    const LR=pR.getTotalLength(), LS=pS.getTotalLength();
+    pR.style.strokeDasharray=LR; pR.style.strokeDashoffset=LR;
+    pS.style.strokeDasharray=LS; pS.style.strokeDashoffset=LS;
 
-  $('footer').textContent = '#' + (C.hashtag || (C.groom + 'And' + C.bride));
+    gsap.set('#cap1',{y:18});
+
+    const prog={p:0};
+    function paint(){
+      const p=prog.p;
+      pR.style.strokeDashoffset=LR*(1-p);
+      pS.style.strokeDashoffset=LS*(1-p);
+      const ptR=pR.getPointAtLength(LR*p), ptS=pS.getPointAtLength(LS*p);
+      tR.setAttribute('cx',ptR.x); tR.setAttribute('cy',ptR.y);
+      tS.setAttribute('cx',ptS.x); tS.setAttribute('cy',ptS.y);
+      const fade=p>=1?0:(p<.02?p/.02:1); // tips appear at start, vanish at the end
+      tR.style.opacity=fade; tS.style.opacity=fade;
+    }
+    paint();
+
+    const tl=gsap.timeline({
+      scrollTrigger:{trigger:'#morph',start:"top top",end:"bottom bottom",scrub:1}
+    });
+    // the two lines travel in from the edges and hand-write the letters
+    tl.to(prog,{p:1,duration:5,ease:"none",onUpdate:paint})
+      // a soft glow blooms where the two lines touch
+      .fromTo('#join',{opacity:0,scale:.2,svgOrigin:"683 323"},
+        {opacity:1,scale:1,duration:.7,ease:"back.out(3)"})
+      .to('#cap1',{opacity:1,y:0,duration:.8},"-=.3")
+      .to('#cap2',{opacity:1,duration:.8},"-=.3")
+      // hold so the calligraphy stays on screen
+      .to({},{duration:1.4});
+  })();
+
+  /* ============ 02 the couple — horizontal on desktop, vertical on mobile ============ */
+  const mm=gsap.matchMedia();
+  mm.add("(min-width: 768px)",()=>{
+    const track=$('#storyTrack');
+    const horiz=gsap.to(track,{x:()=>-(track.scrollWidth-innerWidth),ease:"none",
+      scrollTrigger:{trigger:'#story',start:"top top",pin:true,scrub:1,
+        end:()=>"+="+(track.scrollWidth-innerWidth),invalidateOnRefresh:true,anticipatePin:1}});
+    gsap.utils.toArray('.sphoto img').forEach(img=>{
+      gsap.fromTo(img,{xPercent:-9},{xPercent:0,ease:"none",
+        scrollTrigger:{trigger:img.closest('.spanel'),containerAnimation:horiz,start:"left right",end:"right left",scrub:true}});
+    });
+    gsap.utils.toArray('.spanel').forEach(p=>{
+      gsap.fromTo(p.querySelector('.scard'),{opacity:.25,scale:.92},{opacity:1,scale:1,ease:"none",
+        scrollTrigger:{trigger:p,containerAnimation:horiz,start:"left 70%",end:"center center",scrub:true}});
+    });
+  });
+  mm.add("(max-width: 767px)",()=>{
+    // no pinning on phones: panels stack vertically and rise in as you reach them
+    gsap.utils.toArray('.spanel').forEach(p=>{
+      const card=p.querySelector('.scard');
+      gsap.set(card,{clearProps:'all'});
+      gsap.fromTo(card,{opacity:0,y:54},
+        {opacity:1,y:0,duration:1,ease:"power3.out",
+         scrollTrigger:{trigger:p,start:"top 88%",once:true}});
+    });
+  });
+
+  /* ============ 03 date zoom + gold morph ============ */
+  gsap.fromTo('#dateNum',{scale:.5,opacity:.1},{scale:1.08,opacity:1,ease:"none",
+    scrollTrigger:{trigger:'#date',start:"top top",end:"55% top",scrub:1}});
+  /* page starts CREAM; at the muhurtam it turns deep maroon and STAYS maroon;
+     it only reverts if you scroll back up above this scene */
+  ScrollTrigger.create({trigger:'#date',start:"25% top",
+    onEnter:darkOn,onLeaveBack:darkOff});
+  function darkOn(){
+    gsap.to('#bg',{backgroundColor:'#2B040F',duration:.9,ease:"power2.inOut"});
+    gsap.to('#bg .glowmid',{opacity:0,duration:.9});
+    $('#dateStage').classList.add('lit');
+    document.body.classList.add('dark2');
+    gsap.to('#chrome',{color:'rgba(255,246,227,.6)',duration:.9});
+  }
+  function darkOff(){
+    gsap.to('#bg',{backgroundColor:'#F6E3B4',duration:.9,ease:"power2.inOut"});
+    gsap.to('#bg .glowmid',{opacity:1,duration:.9});
+    $('#dateStage').classList.remove('lit');
+    document.body.classList.remove('dark2');
+    gsap.to('#chrome',{color:'rgba(67,9,26,.7)',duration:.9});
+  }
+
+  /* ============ 04 countdown ============ */
+  const cdw=$('#countdown'), target=new Date(C.countdownTo); let last={};
+  cdw.innerHTML=['days','hours','mins','secs'].map(k=>
+    `<div class="cd"><b id="cd-${k}">00</b><span>${k}</span></div>`).join('');
+  function tick(){
+    let diff=Math.max(0,target-new Date());
+    const d=Math.floor(diff/864e5);diff-=d*864e5;
+    const h=Math.floor(diff/36e5);diff-=h*36e5;
+    const m=Math.floor(diff/6e4);diff-=m*6e4;
+    const s=Math.floor(diff/1e3);
+    const vals={days:d,hours:h,mins:m,secs:s};
+    for(const k in vals){
+      const v=String(vals[k]).padStart(2,'0'),el=document.getElementById('cd-'+k);
+      if(last[k]!==v){gsap.fromTo(el,{yPercent:-46,opacity:0},{yPercent:0,opacity:1,duration:.45,ease:"power3.out"});
+        el.textContent=v;last[k]=v;}
+    }
+  }
+  tick();setInterval(tick,1000);
+  gsap.fromTo('.cd',{y:70,opacity:0},{y:0,opacity:1,stagger:.1,duration:1,ease:"power4.out",
+    scrollTrigger:{trigger:'#count',start:"top 88%",once:true}});
+
+  /* ============ 05 events ============ */
+  const fmtLong=d=>d.toLocaleDateString('en-IN',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+  const fmtTime=t=>{const[h,m]=t.split(':').map(Number);const ap=h>=12?'PM':'AM';
+    return(((h+11)%12)+1)+':'+String(m).padStart(2,'0')+' '+ap;};
+  function gcal(ev){
+    const start=new Date(ev.date+'T'+ev.time+':00');
+    const end=new Date(start.getTime()+(ev.durationHours||3)*36e5);
+    const pad=n=>String(n).padStart(2,'0');
+    const f=d=>d.getFullYear()+pad(d.getMonth()+1)+pad(d.getDate())+'T'+pad(d.getHours())+pad(d.getMinutes())+'00';
+    const p=new URLSearchParams({action:'TEMPLATE',text:C.groom+' & '+C.bride+' — '+ev.label,
+      dates:f(start)+'/'+f(end),details:'With our families, we joyfully invite you.',location:ev.venue+', '+ev.area});
+    return 'https://www.google.com/calendar/render?'+p.toString();
+  }
+  $('#eventsGrid').innerHTML=C.events.map((ev,i)=>{
+    const start=new Date(ev.date+'T'+ev.time+':00');
+    return `<div class="ecard"><div class="num">0${i+1}</div>
+      <div class="lbl">${ev.label}</div><div class="te">${ev.te}</div>
+      <div class="note">${ev.note}</div>
+      <div class="meta"><b>${fmtLong(start)}</b><br/>${fmtTime(ev.time)} · ${ev.venue}<br/>${ev.area}</div>
+      <div class="actions">
+        ${ev.maps?`<a class="btn btn-fill" data-mag target="_blank" rel="noopener" href="${ev.maps}">Open in Maps</a>`:''}
+        <a class="btn btn-line" data-mag target="_blank" rel="noopener" href="${gcal(ev)}">Add to Calendar</a>
+      </div></div>`;}).join('');
+  gsap.utils.toArray('.ecard').forEach((card,i)=>{
+    gsap.fromTo(card,{y:110,opacity:0,rotate:i%2?2:-2},{y:0,opacity:1,rotate:0,duration:1.2,ease:"power4.out",
+      scrollTrigger:{trigger:card,start:"top 94%",once:true}});
+  });
+
+  /* ============ floating calendar button + skip button ============ */
+  (function(){
+    const w=C.events[0], r=C.events[1];
+    $('#fabV1').textContent=w.venue+', '+w.area;
+    $('#fabV2').textContent=r.venue+', '+r.area;
+    const btns=ev=>`
+      <a class="map" target="_blank" rel="noopener" href="${ev.maps}">📍 Map</a>
+      <a class="cal" target="_blank" rel="noopener" href="${gcal(ev)}">📅 Save</a>`;
+    $('#fabB1').innerHTML=btns(w);
+    $('#fabB2').innerHTML=btns(r);
+    const fab=$('#fab');
+    $('#fabBtn').addEventListener('click',()=>fab.classList.toggle('open'));
+    // tap anywhere else to close the sheet
+    document.addEventListener('click',e=>{
+      if(fab.classList.contains('open') && !fab.contains(e.target))fab.classList.remove('open');
+    });
+    $('#skipCal').addEventListener('click',e=>{
+      e.preventDefault();
+      fab.classList.remove('open');
+      const t=document.getElementById('events');
+      if(lenis)lenis.scrollTo(t,{duration:1.6});
+      else t.scrollIntoView({behavior:'smooth'});
+    });
+  })();
+
+  /* ============ magnetic buttons ============ */
+  if(!touch){
+    document.querySelectorAll('[data-mag]').forEach(btn=>{
+      btn.addEventListener('pointermove',e=>{
+        const r=btn.getBoundingClientRect();
+        gsap.to(btn,{x:(e.clientX-r.left-r.width/2)*.35,y:(e.clientY-r.top-r.height/2)*.5,duration:.4,ease:"power3.out"});
+      });
+      btn.addEventListener('pointerleave',()=>gsap.to(btn,{x:0,y:0,duration:.7,ease:"elastic.out(1,.4)"}));
+    });
+  }
+
+  /* ============ background song : "Aidu Rojula Pelli" (Varudu) ============
+     Drop the MP3 into the project as  music/aidu-rojula-pelli.mp3
+     (other accepted names below). The button appears once a file is found. */
+  (function(){
+    const bgm=$('#bgm'), btn=$('#musicBtn');
+    const candidates=[
+      'music/aidu-rojula-pelli.mp3','music/song.mp3','music/bgm.mp3',
+      'audio/aidu-rojula-pelli.mp3','audio/song.mp3',
+      'aidu-rojula-pelli.mp3','song.mp3','music.mp3','bgm.mp3'
+    ];
+    if(C.songUrl)candidates.unshift(C.songUrl); // a pasted direct URL wins over everything
+    let i=0, found=false;
+    /* online song sources that CAN autoplay:
+       1) JioSaavn (saavn.dev open API) — FULL song, has the Telugu catalogue
+       2) Deezer JSONP — 30s preview
+       3) iTunes — 30s preview (last resort; their API redirects some browsers) */
+    const queue=[];
+    queue.push(['saavnid','qIBeC1n8']);      // exact song id on JioSaavn
+    ['Aidhurojula Pelli Varudu','Aidhurojula Pelli']
+      .forEach(t=>queue.push(['saavn',t]));
+    ['Aidhurojula Pelli','Aidhu Rojula Pelli']
+      .forEach(t=>queue.push(['deezer',t]));
+    queue.push(['itunes','Aidhurojula Pelli']);
+    function tryItunes(){
+      const next=queue.shift();
+      if(!next)return;                       // nothing found — button stays hidden
+      const prov=next[0], term=next[1];
+      if(prov==='saavn'||prov==='saavnid'){
+        const url=prov==='saavnid'
+          ? 'https://saavn.sumit.co/api/songs/'+term
+          : 'https://saavn.sumit.co/api/search/songs?query='+encodeURIComponent(term);
+        fetch(url)
+          .then(r=>r.json())
+          .then(d=>{
+            const songs=(d.data&&(d.data.results||d.data))||[];
+            const sng=songs.find(x=>x.downloadUrl&&x.downloadUrl.length);
+            if(sng){
+              const u=sng.downloadUrl;
+              const best=u.find(q=>q.quality==='160kbps')||u[u.length-1];
+              bgm.src=best.url||best.link;   // FULL song -> canplaythrough -> autoplay
+            }else tryItunes();
+          })
+          .catch(()=>tryItunes());
+        return;
+      }
+      const handle=d=>{
+        const list=d.results||d.data||[];
+        const t=list.find(r=>r.previewUrl||r.preview);
+        if(t)bgm.src=t.previewUrl||t.preview; // canplaythrough takes over -> autoplay
+        else tryItunes();
+      };
+      const cb='sngcb'+Date.now()+(Math.random()*1e4|0);
+      let done=false;
+      window[cb]=d=>{done=true;try{handle(d);}catch(e){tryItunes();}delete window[cb];};
+      const s=document.createElement('script');
+      s.src= prov==='deezer'
+        ? 'https://api.deezer.com/search?output=jsonp&limit=12&callback='+cb+'&q='+encodeURIComponent(term)
+        : 'https://itunes.apple.com/WebObjects/MZStoreServices.woa/ws/wsSearch?media=music&country=IN&limit=12&callback='+cb+'&term='+encodeURIComponent(term);
+      s.onerror=()=>{if(!done){done=true;tryItunes();}};
+      document.head.appendChild(s);
+      setTimeout(()=>{if(!done){done=true;delete window[cb];tryItunes();}},6000);
+    }
+    bgm.addEventListener('error',()=>{
+      i++;
+      if(i<candidates.length)bgm.src=candidates[i]; // local files first
+      else tryItunes();                              // then the iTunes preview
+    });
+    let started=false;
+    const markPlaying=()=>{btn.classList.add('playing');btn.classList.remove('paused');};
+    const markMuted=()=>{btn.classList.add('paused');btn.classList.remove('playing');};
+    function startPlayback(){
+      if(started)return;
+      bgm.muted=false;
+      bgm.play().then(()=>{started=true;markPlaying();}).catch(()=>{});
+    }
+    // first interaction ANYWHERE (except the ♪ button itself) starts the song
+    const kick=e=>{
+      if(e&&e.target&&btn.contains(e.target))return; // the button has its own handler
+      startPlayback();
+    };
+    addEventListener('pointerdown',kick);
+    addEventListener('touchstart',kick,{passive:true});
+    addEventListener('wheel',kick,{passive:true});
+    addEventListener('keydown',kick);
+    bgm.addEventListener('playing',()=>{started=true;if(!bgm.muted)markPlaying();});
+    bgm.addEventListener('canplaythrough',()=>{
+      if(found)return; found=true;
+      bgm.volume=.55;
+      btn.classList.add('ready','paused');
+      startPlayback(); // true autoplay where the browser allows it
+    });
+    // plays ONCE — when it ends, the button rests
+    bgm.addEventListener('ended',markMuted);
+    // ♪ button: starts the song if it hasn't begun, replays after the end,
+    // otherwise toggles MUTE
+    btn.addEventListener('click',e=>{
+      e.stopPropagation();
+      if(!started){startPlayback();return;}
+      if(bgm.ended){
+        bgm.currentTime=0;bgm.muted=false;
+        bgm.play().catch(()=>{});
+        markPlaying();
+        return;
+      }
+      bgm.muted=!bgm.muted;
+      bgm.muted?markMuted():markPlaying();
+    });
+    bgm.src=candidates[0];
+  })();
+
+  /* ============ progress + clock ============ */
+  ScrollTrigger.create({start:0,end:"max",onUpdate:self=>gsap.set('#pbar',{scaleX:self.progress})});
+  setInterval(()=>{$('#clock').textContent=new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});},1000);
+
+  /* ============ gold dust ============ */
+  (function(){
+    const cv=$('#dust'),ctx=cv.getContext('2d');let W,H,parts=[],mouse={x:-999,y:-999};
+    const size=()=>{W=cv.width=innerWidth;H=cv.height=innerHeight;};
+    size();addEventListener('resize',size);
+    if(!touch)addEventListener('pointermove',e=>{mouse.x=e.clientX;mouse.y=e.clientY;});
+    const N=Math.min(80,Math.floor(innerWidth/16));
+    for(let i=0;i<N;i++)parts.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,
+      r:Math.random()*1.7+.5,a:Math.random()*7,sp:.1+Math.random()*.28,tw:Math.random()*7,vx:0,vy:0});
+    (function frame(){
+      ctx.clearRect(0,0,W,H);
+      for(const p of parts){
+        p.a+=.004;p.tw+=.03;
+        const dx=p.x-mouse.x,dy=p.y-mouse.y,d2=dx*dx+dy*dy;
+        if(d2<15000){const f=(15000-d2)/15000;p.vx+=dx/Math.sqrt(d2+1)*f*.8;p.vy+=dy/Math.sqrt(d2+1)*f*.8;}
+        p.vx*=.92;p.vy*=.92;
+        p.x+=Math.cos(p.a)*p.sp+p.vx;p.y+=-p.sp*.65+Math.sin(p.a*1.3)*.1+p.vy;
+        if(p.y<-10)p.y=H+10;if(p.x<-10)p.x=W+10;if(p.x>W+10)p.x=-10;
+        ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,7);
+        const dk=document.body.classList.contains('dark2');
+        ctx.fillStyle=dk?`rgba(255,226,150,${.3+.3*Math.sin(p.tw)})`
+                        :`rgba(123,45,52,${.22+.2*Math.sin(p.tw)})`;
+        ctx.shadowColor=dk?'rgba(255,226,150,.9)':'rgba(123,45,52,.5)';
+        ctx.shadowBlur=6;ctx.fill();ctx.shadowBlur=0;
+      }
+      if(!reduced)requestAnimationFrame(frame);
+    })();
+  })();
+
+  /* ============ custom cursor ============ */
+  if(!touch){
+    const c1=$('#cursor'),c2=$('#cursor2');let x=0,y=0,x2=0,y2=0;
+    addEventListener('pointermove',e=>{x=e.clientX;y=e.clientY;});
+    gsap.ticker.add(()=>{x2+=(x-x2)*.16;y2+=(y-y2)*.16;gsap.set(c1,{x,y});gsap.set(c2,{x:x2,y:y2});});
+    document.querySelectorAll('a,.btn,.sphoto,.cd').forEach(el=>{
+      el.addEventListener('pointerenter',()=>c2.classList.add('big'));
+      el.addEventListener('pointerleave',()=>c2.classList.remove('big'));
+    });
+  }
+
+  addEventListener('load',()=>ScrollTrigger.refresh());
 })();
 </script>
 </body>
